@@ -9,9 +9,9 @@ import grainImage from '@/assets/images/grain.jpg'
 
 const portfolioProjects = [
   {
-    company: "Acme Corp",
-    year: "2022",
-    title: "Dark Saas Landing Page",
+    company: "AtomChat",
+    year: "2024",
+    title: "AI Agent Automating Customer Support",
     results: [
       { title: "Enhanced user experience by 40%" },
       { title: "Improved site speed by 50%" },
