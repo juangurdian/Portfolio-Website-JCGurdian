@@ -115,7 +115,8 @@ export const AboutSection = () => {
             < CardHeader title="My Toolbox" 
                           description="Explore the technologies used to craft vexceptional digital experiences."
                           className="" />
-              <ToolboxItems items={toolboxItems} className=""/>
+              <ToolboxItems items={toolboxItems} className="" itemsWrapperClassName="animate-move-left [animation-duration:30s]"/> 
+              <ToolboxItems items={toolboxItems} className="mt-6" itemsWrapperClassName="-animate-move-right [animation-duration:30s]"/>
             </Card>
           </div>
           <div className="grid grid-cols-1  md:grid-cols-5 lg:grid-cols-3 gap-8">
@@ -132,7 +133,9 @@ export const AboutSection = () => {
           </Card>
           <Card className="h-[320px] p-0 relaitve md:col-span-2 lg:col-span-1">
             <Image src={mapImage} alt="map" className="h-full w-full object-cover object-left-top" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-gray-900/30">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-gray-900/30">
+            <div className=" absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-2 animate-ping [animation-duration:2s]"></div>
+            <div className=" absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-10"></div>
             <Image src={smileMemoji} alt="smiling memoji" className="size-20"/>
             </div>
           </Card>
