@@ -16,7 +16,7 @@ const portfolioProjects = [
     results: [
       { title: "Developed a custom AI agent using OpenAI API, LangChain, MySQL, and Google Calendar API to automate appointment scheduling for automotive dealerships across WhatsApp, Instagram, Messenger, and Facebook." },
       { title: "Built an AI-powered web scraper with Scrapy to clean and format vehicle data—including images—into catalog-ready content, enhancing user experience and training the AI." },
-      { title: "Utilized LangSmith for workflow orchestration and Pinecone for semantic search, improving the AI agent’s performance and contextual relevance." },
+      { title: "Utilized LangSmith for workflow orchestration and Pinecone for semantic search, improving the AI agent's performance and contextual relevance." },
     ],
     link: "",
     image: darkSaasLandingPage,

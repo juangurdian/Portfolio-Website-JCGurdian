@@ -6,7 +6,7 @@ import StarIcon from '@/assets/icons/star.svg'
 
 export const HeroSection = () => {
   return (
-    <div className="py-32 md:py-48 lg:py-60 relative z-0">
+    <section id="home" className="py-32 md:py-48 lg:py-60 relative z-0">
       <div className="absolute inset-0 pointer-events-none [mask-image:linear-gradient(to_bottom, transparent,black_10%,black_70%, transparent)]">
       <div 
         className="absolute inset-0 -z-30 opacity-5"
@@ -37,7 +37,7 @@ export const HeroSection = () => {
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
           <button className="inline-flex items-center text-white gap-2 border border-white/15 px-6 h-12 rounded-xl">
-            <a href="#projects.tsx" className="font-semibold">Explore My Work</a>
+            <a href="#projects" className="font-semibold">Explore My Work</a>
             <ArrowDown className="size-4" />
           </button>
           <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl">
@@ -46,6 +46,6 @@ export const HeroSection = () => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

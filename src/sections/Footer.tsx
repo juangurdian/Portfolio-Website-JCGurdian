@@ -3,15 +3,15 @@ import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg"
 const footerLinks =[
   {
     title: 'Linkedin',
-    href: '',
+    href: 'www.linkedin.com/in/juan-gurdian',
   },
   {
     title: 'Github',
-    href: '',
+    href: 'https://github.com/juangurdian',
   },
   {
     title: 'Instagram',
-    href: '',
+    href: 'https://www.instagram.com/jcgurdian03/',
   },
   {
     title: 'X',
