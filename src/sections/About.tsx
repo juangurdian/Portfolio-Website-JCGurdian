@@ -10,6 +10,8 @@ import Css3Icon from '@/assets/icons/css3.svg';
 import ReactIcon from '@/assets/icons/react.svg';
 import ChromeIcon from '@/assets/icons/chrome.svg';
 import GithubIcon from '@/assets/icons/github.svg';
+import pythonIcon from '@/assets/icons/python.svg';
+import javaIcon from '@/assets/icons/java.svg';
 import { TechIcon } from "@/components/TechIcon";
 import mapImage from "@/assets/images/map.png"
 import smileMemoji from '@/assets/images/memoji-smile.png'
@@ -20,6 +22,14 @@ import { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const toolboxItems = [
+  {
+    title: 'Java',
+    iconType: javaIcon ,
+  },
+  {
+    title: 'Python',
+    iconType: pythonIcon ,
+  },
   {
     title: 'Javascript',
     iconType: JavascriptIcon ,
@@ -121,8 +131,8 @@ export const AboutSection = () => {
                           description="Explore the technologies used to craft exceptional digital experiences."
                           className="" />
               <div className="overflow-hidden">
-                <ToolboxItems items={toolboxItems} className="mb-6" itemsWrapperClassName="animate-move-left [animation-duration:30s] [animation-delay:0s]" />
-                <ToolboxItems items={toolboxItems} className="" itemsWrapperClassName="animate-move-right [animation-duration:30s] [animation-delay:15s]" />
+                <ToolboxItems items={toolboxItems} className="mb-2" itemsWrapperClassName="animate-move-left [animation-duration:30s] [animation-delay:0s]" />
+                <ToolboxItems items={toolboxItems} className="-mt-7" itemsWrapperClassName="animate-move-right [animation-duration:30s] [animation-delay:15s]" />
               </div>
             </Card>
           </div>

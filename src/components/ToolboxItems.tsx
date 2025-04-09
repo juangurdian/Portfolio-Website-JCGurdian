@@ -13,7 +13,7 @@ export const ToolboxItems = ({ items, className, itemsWrapperClassName, }:{
 ) => {
     return (
         <div className={twMerge("flex", className)}>
-            <div className={twMerge("flex flex-wrap justify-center p-6 gap-6", itemsWrapperClassName)}>
+            <div className={twMerge("flex flex-nowrap justify-center p-6 gap-6", itemsWrapperClassName)}>
                 {items.map(item => (
                     <div key={item.title} className="inline-flex items-center gap-4 py-2 px-3 outline outline-2 outline-white/10 rounded-lg">
                         <TechIcon component={item.iconType} />
