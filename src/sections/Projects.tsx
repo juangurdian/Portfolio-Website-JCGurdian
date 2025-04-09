@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import CheckCircle from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
+import ArrowDown from '@/assets/icons/arrow-down.svg'
 
 const portfolioProjects = [
   {
@@ -13,33 +14,33 @@ const portfolioProjects = [
     year: "2024",
     title: "AI Agent Automating Customer Support",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "Developed a custom AI agent using OpenAI API, LangChain, MySQL, and Google Calendar API to automate appointment scheduling for automotive dealerships across WhatsApp, Instagram, Messenger, and Facebook." },
+      { title: "Built an AI-powered web scraper with Scrapy to clean and format vehicle data—including images—into catalog-ready content, enhancing user experience and training the AI." },
+      { title: "Utilized LangSmith for workflow orchestration and Pinecone for semantic search, improving the AI agent’s performance and contextual relevance." },
     ],
-    link: "https://youtu.be/4k7IdSLxh6w",
+    link: "",
     image: darkSaasLandingPage,
   },
   {
-    company: "Innovative Co",
-    year: "2021",
-    title: "Light Saas Landing Page",
+    company: "",
+    year: "2024-Present",
+    title: "O.S.C.A.R - Optimized System Control & AI Response",
     results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
+      { title: "Developed a multi-modal AI assistant capable of controlling desktop applications via voice, performing tasks like launching apps, task management, running code in VS Code, and managing daily workflows." },
+      { title: "Integrated with Google Calendar, Spotify, News, Crypto, and Weather APIs, allowing real-time voice-based interaction and intelligent automation through natural language processing." },
+      { title: "Designed a modular React dashboard with support for infinite scalable tools and widgets, seamlessly connected to OSCAR, enabling users to customize functionalities and extend capabilities with ease." },
     ],
-    link: "https://youtu.be/7hi5zwO75yc",
+    link: "https://github.com/juangurdian/Jarvis.v3-Dashboard.git",
     image: lightSaasLandingPage,
   },
   {
-    company: "Quantum Dynamics",
-    year: "2023",
-    title: "AI Startup Landing Page",
+    company: "",
+    year: "2024",
+    title: "Jarvis AI Assitant - Local",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "Built a locally running AI voice assistant using LLaMA models to enable secure, offline natural language conversations, serving as a private home assistant throughout my house." },
+      { title: "Integrated with Spotify and system-level controls to open apps, play music, and manage my computer through voice commands, creating a seamless smart home experience." },
+      { title: "Enabled real-time functionality including weather updates, current time, and multimedia search (images and videos), with a strong focus on privacy, responsiveness, and local execution." },
     ],
     link: "https://youtu.be/Z7I5uSRHMHg",
     image: aiStartupLandingPage,
@@ -51,7 +52,7 @@ export const ProjectsSection = () => {
     throw new Error("Function not implemented.");
   }
 
-  return <section className="pb-16 lg:py-24">
+  return <section id="projects" className="pb-16 lg:py-24">
     <div className="container text-white">
       <div className="flex justify-center">
         <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">Real-world Results</p>
@@ -95,7 +96,7 @@ export const ProjectsSection = () => {
             <button className="bg-white text-gray-950 h-12 
                               w-full rounded-xl font-semibold inline-flex items-center 
                               justify-center gap-2 mt-8 md:w-auto px-6">
-                <span>Visit Live Site</span>
+                <span>Visit Repository</span>
                 <ArrowUpRightIcon classNAme="size-4"/>
               </button>
             </a>

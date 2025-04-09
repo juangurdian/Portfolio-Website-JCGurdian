@@ -4,41 +4,32 @@ import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png";
 import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
 import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png";
 import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
+import atomlogo from "@/assets/images/atomlogo.png"
 import { SectionHeader } from "@/components/Sectionheader";
 import grainImage from "@/assets/images/grain.jpg";
 import { Card } from "@/components/Card";
 import { Fragment } from 'react';
+import cargill from "@/assets/images/cargill.png";
+import memojicomputer from "@/assets/images/memoji-computer.png";
 
 const testimonials = [
   {
-    name: "Alex Turner",
-    position: "Marketing Manager @ TechStartups",
-    text: "Alex was instrumental in transforming our website into a powerful marketing tool. His attention to detail and ability to understand our brand is exceptional. We're thrilled with the results!",
-    avatar: memojiAvatar1,
+    name: "Machine Learning Intern",
+    position: "Atom Chat",
+    text: "As a Machine Learning Intern at AtomChat (July – October 2024), I helped automate customer service for automotive dealerships by developing a custom AI agent using OpenAI API, LangChain, MySQL, and Google Calendar API for seamless appointment management. I integrated the agent with WhatsApp, Instagram, Messenger, and Facebook, and built an AI-powered web scraper using Scrapy to clean and organize vehicle data into catalog-ready formats with images, which also served as training data for the AI. I leveraged LangSmith for workflow management and Pinecone for vector search.",
+    avatar: atomlogo,
   },
   {
-    name: "Olivia Green",
-    position: "Head of Design @ GreenLeaf",
-    text: "Working with Alex was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
-    avatar: memojiAvatar2,
+    name: "Digital Transformation Intern",
+    position: "Cargill",
+    text: "As a Digital Transformation Intern at Cargill (June – August 2023), I engineered a workflow automation system using PowerApps, resulting in a 25% reduction in operational time and significantly improving team productivity. I also gained proficiency in PowerBI, leveraging it for real-time data analysis and impactful reporting that supported key business decisions. Collaborating with international managers across multiple regions, I developed a strong understanding of global business operations and cross-cultural strategy execution.",
+    avatar: cargill,
   },
   {
-    name: "Daniel White",
-    position: "CEO @ InnovateCo",
-    text: "Alex's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
-    avatar: memojiAvatar3,
-  },
-  {
-    name: "Emily Carter",
-    position: "Product Manager @ GlobalTech",
-    text: "Alex is a true frontend wizard. He took our complex product and transformed it into an intuitive and engaging user interface. We're already seeing positive feedback from our customers.",
-    avatar: memojiAvatar4,
-  },
-  {
-    name: "Michael Brown",
-    position: "Director of IT @ MegaCorp",
-    text: "Alex's work on our website has been nothing short of exceptional. He's a talented developer who is also a great communicator. We highly recommend him.",
-    avatar: memojiAvatar5,
+    name: "Freelancer",
+    position: "Freelance Experience",
+    text: "As a Freelance Web Developer (2023 – Present), I’ve developed 5+ modern, responsive web applications using React, Vue.js, React Native, TailwindCSS, Node.js, and TypeScript, delivering dynamic, client-focused solutions. I integrated features like authentication, payment systems, and automation through RESTful APIs, and enhanced UX with smooth animations and optimized SEO—driving up to a 30% boost in user engagement. This role has strengthened my full-stack development skills, as well as my ability to deliver polished, scalable products independently.",
+    avatar: memojicomputer,
   },
 ];
 
@@ -47,9 +38,9 @@ export const TestimonialsSection = () => {
   <div className="py-16 lg:py-24">
     <div className="container">
       <SectionHeader 
-        title={"What Clients Say About Me"} 
-        eyebrow={"Happy Clients"} 
-        description={"See what clients sau about my work"} />
+        title={"Experience"} 
+        eyebrow={"Past Employers"} 
+        description={"See where my experiences have taken me."} />
 
 
       <div className="mt-12 lg:mt-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
