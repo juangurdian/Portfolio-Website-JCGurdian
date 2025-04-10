@@ -7,8 +7,24 @@ import CheckCircle from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
+import jarvis from "@/assets/images/jarvis.png"
+import socialhour from "@/assets/images/socialhour.png"
+import orion from "@/assets/images/orion.png"
 
 const portfolioProjects = [
+
+  {
+    company: "O.R.I.O.N",
+    year: "2025",
+    title: "O.R.I.O.N - Operational Response & Intelligent Online Network",
+    results: [
+      { title: "Developed a multi-model AI platform using GPT-4, Gemini, and Claude for intelligent chat interactions, customer support, and data extraction with context-aware responses." },
+      { title: "Integrated advanced data processing with Pinecone and Firebase for real-time analytics, document parsing, and automated workflows across multiple content formats." },
+      { title: "Built a scalable cloud architecture using Python and React, enabling enterprise-grade AI service deployment with customizable monitoring and extension capabilities." },
+    ],
+    link: "https://youtu.be/Z7I5uSRHMHg",
+    image: orion,
+  },
   {
     company: "AtomChat",
     year: "2024",
@@ -43,7 +59,19 @@ const portfolioProjects = [
       { title: "Enabled real-time functionality including weather updates, current time, and multimedia search (images and videos), with a strong focus on privacy, responsiveness, and local execution." },
     ],
     link: "https://youtu.be/Z7I5uSRHMHg",
-    image: aiStartupLandingPage,
+    image: jarvis,
+  },
+  {
+    company: "Social Hour Studio",
+    year: "2024",
+    title: "Marketing Agency Website",
+    results: [
+      { title: "Collaborated closely with the client to design and develop a modern, responsive website that effectively showcases their marketing services and portfolio, ensuring their brand identity was perfectly represented." },
+      { title: "Built a custom website using HTML, CSS, and JavaScript, implementing smooth animations and transitions to create an engaging user experience that aligns with the agency's creative vision." },
+      { title: "Provided comprehensive web hosting and maintenance services, ensuring optimal performance, security updates, and continuous improvements based on client feedback and analytics." },
+    ],
+    link: "https://socialhourstudio.co",
+    image: socialhour,
   },
 ];
 

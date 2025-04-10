@@ -20,39 +20,77 @@ import { ToolboxItems } from "@/components/ToolboxItems";
 import {motion} from 'framer-motion'
 import { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
+import grainImage from '@/assets/images/grain.jpg';
+import memojiImage from '@/assets/images/memoji-avatar-1.png';
+import jcimage from '@/assets/images/jcimage.jpg'
 
-const toolboxItems = [
+const toolboxItemsFirstRow = [
   {
     title: 'Java',
-    iconType: javaIcon ,
+    iconType: javaIcon,
   },
   {
     title: 'Python',
-    iconType: pythonIcon ,
+    iconType: pythonIcon,
   },
   {
     title: 'Javascript',
-    iconType: JavascriptIcon ,
+    iconType: JavascriptIcon,
   },
   {
     title: 'HTML5',
-    iconType: Html5Icon ,
+    iconType: Html5Icon,
   },
   {
     title: 'CSS3',
-    iconType: Css3Icon ,
+    iconType: Css3Icon,
   },
   {
     title: 'React',
-    iconType: ReactIcon ,
+    iconType: ReactIcon,
   },
   {
     title: 'Chrome',
-    iconType: ChromeIcon ,
+    iconType: ChromeIcon,
   },
   {
     title: 'Github',
-    iconType: GithubIcon ,
+    iconType: GithubIcon,
+  }
+]
+
+const toolboxItemsSecondRow = [
+  {
+    title: 'React',
+    iconType: ReactIcon,
+  },
+  {
+    title: 'Javascript',
+    iconType: JavascriptIcon,
+  },
+  {
+    title: 'Python',
+    iconType: pythonIcon,
+  },
+  {
+    title: 'Java',
+    iconType: javaIcon,
+  },
+  {
+    title: 'Github',
+    iconType: GithubIcon,
+  },
+  {
+    title: 'Chrome',
+    iconType: ChromeIcon,
+  },
+  {
+    title: 'HTML5',
+    iconType: Html5Icon,
+  },
+  {
+    title: 'CSS3',
+    iconType: Css3Icon,
   }
 ]
 
@@ -86,7 +124,7 @@ const hobbies = [
 
   },
   {
-    title: 'Vibe Coding',
+    title: 'Coding',
     emoji: '💻',
     left: '70%',
     top: '45%',  
@@ -100,7 +138,7 @@ const hobbies = [
 
   },
   {
-    title: 'Crypto Mining/Development',
+    title: 'Web3 Development',
     emoji: '📈',
     left: '45%',
     top: '70%',
@@ -114,11 +152,71 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-20 lg:py-28">
       <div className="container">
-      <SectionHeader eyebrow="About Me" 
-        title="A Glimpse Into My World"
-        description="Learn more about my journey, values, and the passion that drives me to create exceptional digital experiences." 
+        <SectionHeader
+          title="About Me"
+          eyebrow="Introduction"
+          description="Get to know me better"
         />
-        <div className="mt-20 flex flex-col gap-8">
+
+        <div className="mt-12 lg:mt-24 space-y-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
+            <Card className="md:col-span-3 lg:col-span-2 p-6 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-5 -z-10" style={{
+                backgroundImage: `url(${grainImage.src})`,
+              }}></div>
+              <div className="pl-1 -mt-4">
+                <CardHeader 
+                  title="About Me" 
+                  description="Learn more about my journey and passion for technology"
+                  className="mb-0"
+                />
+              </div>
+              <div>
+                <p className="text-white/60 leading-relaxed">
+                  I'm Juan Carlos Gurdian, a Nicaraguan developer and senior at Texas Christian University, majoring in Computer Information Technology. I'm passionate about building real-world AI tools and started my coding journey creating small automations—now I develop full-stack apps, voice assistants, and scalable AI systems.
+                </p>
+              </div>
+            </Card>
+
+            <Card className="md:col-span-2 lg:col-span-1 p-8 relative overflow-hidden flex items-center justify-center">
+              <div className="absolute inset-0 opacity-5 -z-10" style={{
+                backgroundImage: `url(${grainImage.src})`,
+              }}></div>
+              <div className="relative">
+                <motion.div
+                  initial={{ y: 0 }}
+                  animate={{ 
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative group"
+                >
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.05,
+                      rotate: 2,
+                      transition: { duration: 0.3 }
+                    }}
+                    className="relative"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-300/20 to-sky-400/20 rounded-lg transition-opacity duration-300 group-hover:opacity-0 -z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-lg transition-opacity duration-300 group-hover:opacity-0 -z-10" />
+                    <Image
+                      src={jcimage}
+                      alt="Juan Gurdian"
+                      className="w-48 h-64 rounded-lg object-cover"
+                    />
+                    <div className="absolute inset-0 rounded-lg ring-1 ring-white/10 transition-all duration-300 group-hover:ring-white/20" />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </Card>
+          </div>
+
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
             <Card className="h-[320px] md:col-span-2 lg:col-span-1">
               < CardHeader title="My Reads" description="Explore the books shaping my perspective."/>
@@ -131,8 +229,8 @@ export const AboutSection = () => {
                           description="Explore the technologies used to craft exceptional digital experiences."
                           className="" />
               <div className="overflow-hidden">
-                <ToolboxItems items={toolboxItems} className="mb-2" itemsWrapperClassName="animate-move-left [animation-duration:30s] [animation-delay:0s]" />
-                <ToolboxItems items={toolboxItems} className="-mt-7" itemsWrapperClassName="animate-move-right [animation-duration:30s] [animation-delay:15s]" />
+                <ToolboxItems items={toolboxItemsFirstRow} className="mb-2" itemsWrapperClassName="animate-move-left [animation-duration:30s] [animation-delay:0s]" />
+                <ToolboxItems items={toolboxItemsSecondRow} className="-mt-7" itemsWrapperClassName="animate-move-right [animation-duration:30s] [animation-delay:15s]" />
               </div>
             </Card>
           </div>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
 import grainImage from '@/assets/images/grain.jpg'
 import StarIcon from '@/assets/icons/star.svg'
+import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 
 export const HeroSection = () => {
   return (
@@ -40,10 +41,13 @@ export const HeroSection = () => {
             <a href="#projects" className="font-semibold">Explore My Work</a>
             <ArrowDown className="size-4" />
           </button>
-          <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl">
-            <span>👋</span>
-            <span className="font-semibold">Let&apos;s Connect</span>
-          </button>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            <span className="font-semibold">Let's Connect</span>
+            <ArrowUpRightIcon className="size-4" />
+          </a>
         </div>
       </div>
     </section>
