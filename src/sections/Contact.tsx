@@ -7,7 +7,7 @@ export const ContactSection = () => {
   return (
     <section id="contact" className="py-16 lg:py-24">
       <div className="container">
-        <SectionHeader
+        <SectionHeader  
           title="Get in Touch"
           eyebrow="Contact"
           description="Let&apos;s discuss your next project or just say hello!"

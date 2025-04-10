@@ -173,7 +173,7 @@ export const AboutSection = () => {
               </div>
               <div>
                 <p className="text-white/60 leading-relaxed">
-                  I'm Juan Carlos Gurdian, a Nicaraguan developer and senior at Texas Christian University, majoring in Computer Information Technology. I'm passionate about building real-world AI tools and started my coding journey creating small automations—now I develop full-stack apps, voice assistants, and scalable AI systems.
+                  I&apos;m Juan Carlos Gurdian, a Nicaraguan developer and senior at Texas Christian University, majoring in Computer Information Technology. I&apos;m passionate about building real-world AI tools and started my coding journey creating small automations—now I develop full-stack apps, voice assistants, and scalable AI systems.
                 </p>
               </div>
             </Card>
