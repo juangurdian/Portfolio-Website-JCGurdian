@@ -102,7 +102,7 @@ export const ContactSection = () => {
                 </div>
                 <p className="text-white">Available for new projects</p>
               </div>
-              <p className="text-white/60 mt-4">I'm currently open to new opportunities and collaborations. Feel free to reach out!</p>
+              <p className="text-white/60 mt-4">I&apos;m currently open to new opportunities and collaborations. Feel free to reach out!</p>
             </Card>
           </div>
         </div>
