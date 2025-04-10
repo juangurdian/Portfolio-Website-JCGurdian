@@ -10,7 +10,7 @@ export const ContactSection = () => {
         <SectionHeader
           title="Get in Touch"
           eyebrow="Contact"
-          description="Let's discuss your next project or just say hello!"
+          description="Let&apos;s discuss your next project or just say hello!"
         />
 
         <div className="mt-12 lg:mt-24 grid grid-cols-1 lg:grid-cols-2 gap-8">
