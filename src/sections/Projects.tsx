@@ -7,9 +7,9 @@ import CheckCircle from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
-import jarvis from "@/assets/images/jarvis.png"
 import socialhour from "@/assets/images/socialhour.png"
 import orion from "@/assets/images/orion.png"
+import frogcrew from "@/assets/images/frogcrew.jpeg"
 
 const portfolioProjects = [
 
@@ -26,16 +26,28 @@ const portfolioProjects = [
     image: orion,
   },
   {
-    company: "AtomChat",
+    company: "TCU",
     year: "2024",
-    title: "AI Agent Automating Customer Support",
+    title: "FrogCrew — Sports Broadcasting Management Platform",
     results: [
-      { title: "Developed a custom AI agent using OpenAI API, LangChain, MySQL, and Google Calendar API to automate appointment scheduling for automotive dealerships across WhatsApp, Instagram, Messenger, and Facebook." },
-      { title: "Built an AI-powered web scraper with Scrapy to clean and format vehicle data—including images—into catalog-ready content, enhancing user experience and training the AI." },
-      { title: "Utilized LangSmith for workflow orchestration and Pinecone for semantic search, improving the AI agent's performance and contextual relevance." },
+      { title: "Developed a full-stack platform using Vue 3 and TailwindCSS for managing TCU's Sports Broadcasting crews, events, and scheduling, enabling seamless coordination of broadcast operations." },
+      { title: "Built features for admins to assign shifts, track crew member availability, and automate communications, while providing crew members with an intuitive interface to view upcoming events and manage profiles." },
+      { title: "Integrated with Spring Boot backend and PostgreSQL database with role-based security, designed with scalability in mind to accommodate growing broadcast operations." },
     ],
     link: "",
-    image: darkSaasLandingPage,
+    image: frogcrew,
+  },
+  {
+    company: "Social Hour Studio",
+    year: "2024",
+    title: "Marketing Agency Website",
+    results: [
+      { title: "Collaborated closely with the client to design and develop a modern, responsive website that effectively showcases their marketing services and portfolio, ensuring their brand identity was perfectly represented." },
+      { title: "Built a custom website using HTML, CSS, and JavaScript, implementing smooth animations and transitions to create an engaging user experience that aligns with the agency's creative vision." },
+      { title: "Provided comprehensive web hosting and maintenance services, ensuring optimal performance, security updates, and continuous improvements based on client feedback and analytics." },
+    ],
+    link: "https://socialhourstudio.co",
+    image: socialhour,
   },
   {
     company: "",
@@ -50,28 +62,16 @@ const portfolioProjects = [
     image: lightSaasLandingPage,
   },
   {
-    company: "",
+    company: "AtomChat",
     year: "2024",
-    title: "Jarvis AI Assitant - Local",
+    title: "AI Agent Automating Customer Support",
     results: [
-      { title: "Built a locally running AI voice assistant using LLaMA models to enable secure, offline natural language conversations, serving as a private home assistant throughout my house." },
-      { title: "Integrated with Spotify and system-level controls to open apps, play music, and manage my computer through voice commands, creating a seamless smart home experience." },
-      { title: "Enabled real-time functionality including weather updates, current time, and multimedia search (images and videos), with a strong focus on privacy, responsiveness, and local execution." },
+      { title: "Developed a custom AI agent using OpenAI API, LangChain, MySQL, and Google Calendar API to automate appointment scheduling for automotive dealerships across WhatsApp, Instagram, Messenger, and Facebook." },
+      { title: "Built an AI-powered web scraper with Scrapy to clean and format vehicle data—including images—into catalog-ready content, enhancing user experience and training the AI." },
+      { title: "Utilized LangSmith for workflow orchestration and Pinecone for semantic search, improving the AI agent's performance and contextual relevance." },
     ],
-    link: "https://youtu.be/Z7I5uSRHMHg",
-    image: jarvis,
-  },
-  {
-    company: "Social Hour Studio",
-    year: "2024",
-    title: "Marketing Agency Website",
-    results: [
-      { title: "Collaborated closely with the client to design and develop a modern, responsive website that effectively showcases their marketing services and portfolio, ensuring their brand identity was perfectly represented." },
-      { title: "Built a custom website using HTML, CSS, and JavaScript, implementing smooth animations and transitions to create an engaging user experience that aligns with the agency's creative vision." },
-      { title: "Provided comprehensive web hosting and maintenance services, ensuring optimal performance, security updates, and continuous improvements based on client feedback and analytics." },
-    ],
-    link: "https://socialhourstudio.co",
-    image: socialhour,
+    link: "",
+    image: darkSaasLandingPage,
   },
 ];
 
