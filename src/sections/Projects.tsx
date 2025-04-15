@@ -22,7 +22,7 @@ const portfolioProjects = [
       { title: "Integrated advanced data processing with Pinecone and Firebase for real-time analytics, document parsing, and automated workflows across multiple content formats." },
       { title: "Built a scalable cloud architecture using Python and React, enabling enterprise-grade AI service deployment with customizable monitoring and extension capabilities." },
     ],
-    link: "https://youtu.be/Z7I5uSRHMHg",
+    link: "",
     image: orion,
   },
   {
@@ -34,7 +34,7 @@ const portfolioProjects = [
       { title: "Built features for admins to assign shifts, track crew member availability, and automate communications, while providing crew members with an intuitive interface to view upcoming events and manage profiles." },
       { title: "Integrated with Spring Boot backend and PostgreSQL database with role-based security, designed with scalability in mind to accommodate growing broadcast operations." },
     ],
-    link: "",
+    link: "https://github.com/juangurdian/FrogCrew.v2",
     image: frogcrew,
   },
   {
