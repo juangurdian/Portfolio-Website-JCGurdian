@@ -25,6 +25,7 @@ export const Header = () => {
           <a href="#home" className="nav-item text-lg">Home</a>
           <a href="#projects" className="nav-item text-lg">Projects</a>
           <a href="#about" className="nav-item text-lg">About</a>
+          <a href="/blog" className="nav-item text-lg">Blog</a>
           <a href="#contact" className="nav-item bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900 text-lg">Contact</a>
         </div>
 
@@ -61,6 +62,7 @@ export const Header = () => {
                 <a href="#home" className="nav-item text-lg" onClick={() => setIsMenuOpen(false)}>Home</a>
                 <a href="#projects" className="nav-item text-lg" onClick={() => setIsMenuOpen(false)}>Projects</a>
                 <a href="#about" className="nav-item text-lg" onClick={() => setIsMenuOpen(false)}>About</a>
+                <a href="/blog" className="nav-item text-lg" onClick={() => setIsMenuOpen(false)}>Blog</a>
                 <a href="#contact" className="nav-item bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900 text-lg" onClick={() => setIsMenuOpen(false)}>Contact</a>
               </div>
             </motion.div>

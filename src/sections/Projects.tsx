@@ -10,7 +10,7 @@ import ArrowDown from '@/assets/icons/arrow-down.svg'
 import socialhour from "@/assets/images/socialhour.png"
 import orion from "@/assets/images/orion.png"
 import frogcrew from "@/assets/images/frogcrew.jpeg"
-import motivateme from "@/assets/images/motivateme.png"
+import motivateme from "@/assets/images/motivatemePoster.png"
 
 const portfolioProjects = [
 
