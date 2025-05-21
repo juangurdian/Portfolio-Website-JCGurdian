@@ -10,6 +10,7 @@ import ArrowDown from '@/assets/icons/arrow-down.svg'
 import socialhour from "@/assets/images/socialhour.png"
 import orion from "@/assets/images/orion.png"
 import frogcrew from "@/assets/images/frogcrew.jpeg"
+import motivateme from "@/assets/images/motivateme.png"
 
 const portfolioProjects = [
 
@@ -27,7 +28,7 @@ const portfolioProjects = [
   },
   {
     company: "TCU",
-    year: "2024",
+    year: "2025",
     title: "FrogCrew — Sports Broadcasting Management Platform",
     results: [
       { title: "Developed a full-stack platform using Vue 3 and TailwindCSS for managing TCU's Sports Broadcasting crews, events, and scheduling, enabling seamless coordination of broadcast operations." },
@@ -36,6 +37,17 @@ const portfolioProjects = [
     ],
     link: "https://github.com/juangurdian/FrogCrew.v2",
     image: frogcrew,
+  },{
+    company: "TCU",
+    year: "2025",
+    title: "MotivateMe  – Health & Wellness Mobile App",
+    results: [
+      { title: "Collaborated with UNT Health Science Center to design and build a cross-platform mobile app using React Native, Spring Boot, and PostgreSQL." },
+      { title: "Developed key features including SMART goal setting, daily journaling, biometrics tracking, chronic condition logging, motivational notifications, and a weekly calendar overview." },
+      { title: "Focused on accessibility and usability to support underserved communities in forming healthy habits and improving long-term wellness outcomes." },
+    ],
+    link: "https://seniordesign.cs.tcu.edu/",
+    image: motivateme,
   },
   {
     company: "Social Hour Studio",
