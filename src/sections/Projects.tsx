@@ -8,12 +8,23 @@ import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
 import socialhour from "@/assets/images/socialhour.png"
-import orion from "@/assets/images/ORION.png"
+import orion from "@/assets/images/orion.png"
 import frogcrew from "@/assets/images/frogcrew.jpeg"
 import motivateme from "@/assets/images/motivatemePoster.png"
 
 const portfolioProjects = [
-
+  {
+    company: "Bole.to",
+    year: "2025-Present",
+    title: "Bole.to - Social Ticketing & Events Operation Platform",
+    results: [
+      { title: "Co-founded with a friend; I serve as Co-CEO & CTO. Designing and building an all-in-one platform that combines ticketing and offline access control with a social layer to drive pre/post-show engagement." },
+      { title: "Led the web + mobile architecture (Next.js 14, React Native (Expo), TypeScript), integrating Hi.Events for ticketing, QR check-in that works with no signal (local validation, multi-gate sync, duplicate detection), and a wallet for attendees." },
+      { title: "Built the social stack (Supabase Realtime/Storage/Edge Functions): event feed with announcements & live polls and a D+1 camera that reveals photos the next day (moderation, scheduled jobs, push notifications). Set up Vercel/EAS CI/CD, Sentry + analytics, and payments (Stripe / dLocal / PayPal) for NIO/USD." },
+    ],
+    link: "https://github.com/juangurdian/Jarvis.v3-Dashboard.git",
+    image: lightSaasLandingPage,
+  },
   {
     company: "O.R.I.O.N",
     year: "2025",
@@ -60,18 +71,6 @@ const portfolioProjects = [
     ],
     link: "https://socialhourstudio.co",
     image: socialhour,
-  },
-  {
-    company: "",
-    year: "2024-Present",
-    title: "O.S.C.A.R - Optimized System Control & AI Response",
-    results: [
-      { title: "Developed a multi-modal AI assistant capable of controlling desktop applications via voice, performing tasks like launching apps, task management, running code in VS Code, and managing daily workflows." },
-      { title: "Integrated with Google Calendar, Spotify, News, Crypto, and Weather APIs, allowing real-time voice-based interaction and intelligent automation through natural language processing." },
-      { title: "Designed a modular React dashboard with support for infinite scalable tools and widgets, seamlessly connected to OSCAR, enabling users to customize functionalities and extend capabilities with ease." },
-    ],
-    link: "https://github.com/juangurdian/Jarvis.v3-Dashboard.git",
-    image: lightSaasLandingPage,
   },
   {
     company: "AtomChat",
