@@ -11,6 +11,7 @@ import socialhour from "@/assets/images/socialhour.png"
 import orion from "@/assets/images/orion.png"
 import frogcrew from "@/assets/images/frogcrew.jpeg"
 import motivateme from "@/assets/images/motivatemePoster.png"
+import bole from "@/assets/images/boleto.png"
 
 const portfolioProjects = [
   {
@@ -22,8 +23,8 @@ const portfolioProjects = [
       { title: "Led the web + mobile architecture (Next.js 14, React Native (Expo), TypeScript), integrating Hi.Events for ticketing, QR check-in that works with no signal (local validation, multi-gate sync, duplicate detection), and a wallet for attendees." },
       { title: "Built the social stack (Supabase Realtime/Storage/Edge Functions): event feed with announcements & live polls and a D+1 camera that reveals photos the next day (moderation, scheduled jobs, push notifications). Set up Vercel/EAS CI/CD, Sentry + analytics, and payments (Stripe / dLocal / PayPal) for NIO/USD." },
     ],
-    link: "https://github.com/juangurdian/Jarvis.v3-Dashboard.git",
-    image: lightSaasLandingPage,
+    link: "https://www.mybole.to/",
+    image: bole,
   },
   {
     company: "O.R.I.O.N",
