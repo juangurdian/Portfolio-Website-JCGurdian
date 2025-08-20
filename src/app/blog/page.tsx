@@ -2,6 +2,8 @@ import { SectionHeader } from "@/components/Sectionheader";
 import { Card } from "@/components/Card";
 import grainImage from "@/assets/images/grain.jpg";
 import Image from "next/image";
+import Link from "next/link";
+import { blogPosts } from "@/data/blog-posts";
 
 export default function BlogPage() {
   return (
@@ -14,39 +16,29 @@ export default function BlogPage() {
         />
         
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Content cards will go here */}
-          <Card className="p-6 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5 -z-10" style={{
-              backgroundImage: `url(${grainImage.src})`,
-            }}></div>
-            <div className="bg-gradient-to-r from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text mb-4">
-              <span>3D Printing</span>
-            </div>
-            <h3 className="text-xl font-serif mb-2">Coming Soon</h3>
-            <p className="text-white/60">My 3D printing projects and designs will be featured here.</p>
-          </Card>
-          
-          <Card className="p-6 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5 -z-10" style={{
-              backgroundImage: `url(${grainImage.src})`,
-            }}></div>
-            <div className="bg-gradient-to-r from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text mb-4">
-              <span>Research</span>
-            </div>
-            <h3 className="text-xl font-serif mb-2">Coming Soon</h3>
-            <p className="text-white/60">Articles and research on technology, AI, and software development.</p>
-          </Card>
-          
-          <Card className="p-6 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5 -z-10" style={{
-              backgroundImage: `url(${grainImage.src})`,
-            }}></div>
-            <div className="bg-gradient-to-r from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text mb-4">
-              <span>Videos</span>
-            </div>
-            <h3 className="text-xl font-serif mb-2">Coming Soon</h3>
-            <p className="text-white/60">Project demonstrations and tutorials will be available here.</p>
-          </Card>
+          {blogPosts.map((post) => (
+            <Link href={`/blog/${post.slug}`} key={post.slug}>
+              <Card className="p-6 relative overflow-hidden h-full hover:scale-[1.02] transition-transform duration-300">
+                <div className="absolute inset-0 opacity-5 -z-10" style={{
+                  backgroundImage: `url(${grainImage.src})`,
+                }}></div>
+                <div className="bg-gradient-to-r from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text mb-4">
+                  <span>{post.category}</span>
+                  <span>&bull;</span>
+                  <span>{post.date}</span>
+                </div>
+                <h3 className="text-xl font-serif mb-2">{post.title}</h3>
+                <p className="text-white/60">{post.excerpt}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="text-xs bg-white/10 px-2 py-1 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            </Link>
+          ))}
         </div>
       </div>
     </main>

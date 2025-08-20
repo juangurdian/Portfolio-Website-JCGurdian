@@ -8,7 +8,7 @@ import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
 import socialhour from "@/assets/images/socialhour.png"
-import orion from "@/assets/images/orion.png"
+import orion from "@/assets/images/ORION.png"
 import frogcrew from "@/assets/images/frogcrew.jpeg"
 import motivateme from "@/assets/images/motivatemePoster.png"
 
@@ -17,13 +17,13 @@ const portfolioProjects = [
   {
     company: "O.R.I.O.N",
     year: "2025",
-    title: "O.R.I.O.N - Operational Response & Intelligent Online Network",
+    title: "O.R.I.O.N Customer Assistant - AI Platform for small businesses",
     results: [
-      { title: "Developed a multi-model AI platform using GPT-4, Gemini, and Claude for intelligent chat interactions, customer support, and data extraction with context-aware responses." },
-      { title: "Integrated advanced data processing with Pinecone and Firebase for real-time analytics, document parsing, and automated workflows across multiple content formats." },
-      { title: "Built a scalable cloud architecture using Python and React, enabling enterprise-grade AI service deployment with customizable monitoring and extension capabilities." },
+      { title: "Developed a self-hosted AI assistant designed for small businesses (food trucks, shops, salons) to automate customer interactions such as FAQs, menu inquiries, and simple order taking." },
+      { title: "Implemented a retrieval-augmented generation (RAG) system using FAISS and sentence-transformers for accurate, context-aware responses from uploaded FAQs, menus, and documents." },
+      { title: "Built multi-channel support including a web chat widget, WhatsApp (Twilio/Cloud API), and Telegram, enabling businesses to connect with customers where they already are." },
     ],
-    link: "",
+    link: "https://github.com/juangurdian/CustomerService-AI-Automation",
     image: orion,
   },
   {
