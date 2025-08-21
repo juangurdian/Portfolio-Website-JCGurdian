@@ -12,6 +12,7 @@ import orion from "@/assets/images/orion.png"
 import frogcrew from "@/assets/images/frogcrew.jpeg"
 import motivateme from "@/assets/images/motivatemePoster.png"
 import bole from "@/assets/images/boleto.png"
+import jasper from "@/assets/images/jasper.png"
 
 const portfolioProjects = [
   {
@@ -62,6 +63,18 @@ const portfolioProjects = [
     image: motivateme,
   },
   {
+    company: "Jasper AI",
+    year: "2025",
+    title: "Jasper AI — Conversation-First Personal Productivity Assistant",
+    results: [
+      { title: "Conversation-first web assistant that turns casual chat/voice into actions across Tasks/Calendar/Email/Finance; a custom GPT-4.1 Nano intent engine parses multi-intent requests and outputs strict JSON for deterministic function routing with an Other/Clarify fallback." },
+      { title: "Modules: Tasks (NL add/edit/complete, priorities), Calendar (2-way Google sync, reschedule & conflict-fix), Email (Gmail summaries + tone-matched drafts), Finance (voice expense logging, reports); live: Gmail & Google Calendar · next: Outlook Mail/Calendar, Slack, Notion, Discord, Google Drive." },
+      { title: "Platforms & trust: runs in any browser + PWA; native iOS/Android and macOS/Windows wrappers planned; OAuth2 least-privilege, encryption, data isolation, no training on personal data; instrumentation for intent accuracy, action success, and latency." },
+    ],
+    link: "",
+    image: jasper,
+  },
+  {
     company: "Social Hour Studio",
     year: "2024",
     title: "Marketing Agency Website",
@@ -73,18 +86,7 @@ const portfolioProjects = [
     link: "https://socialhourstudio.co",
     image: socialhour,
   },
-  {
-    company: "AtomChat",
-    year: "2024",
-    title: "AI Agent Automating Customer Support",
-    results: [
-      { title: "Developed a custom AI agent using OpenAI API, LangChain, MySQL, and Google Calendar API to automate appointment scheduling for automotive dealerships across WhatsApp, Instagram, Messenger, and Facebook." },
-      { title: "Built an AI-powered web scraper with Scrapy to clean and format vehicle data—including images—into catalog-ready content, enhancing user experience and training the AI." },
-      { title: "Utilized LangSmith for workflow orchestration and Pinecone for semantic search, improving the AI agent's performance and contextual relevance." },
-    ],
-    link: "",
-    image: darkSaasLandingPage,
-  },
+  
 ];
 
 export const ProjectsSection = () => {
