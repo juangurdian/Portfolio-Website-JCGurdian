@@ -203,8 +203,8 @@ export function NetworkNodeMesh({
         )
       );
       const fresnelMat = fresnelRef.current.material as unknown as { opacity: number; glowIntensity: number };
-      fresnelMat.opacity = easedEntrance * (hovered || isActive ? 0.9 : 0.5);
-      fresnelMat.glowIntensity = isActive ? 0.8 : hovered ? 0.6 : 0.3;
+      fresnelMat.opacity = easedEntrance * (hovered || isActive ? 0.6 : 0.35);
+      fresnelMat.glowIntensity = isActive ? 0.5 : hovered ? 0.4 : 0.2;
     }
 
     // Ripple flash — brief emissive boost when ripple arrives
@@ -220,8 +220,8 @@ export function NetworkNodeMesh({
     if (meshRef.current) {
       const mat = meshRef.current.material as THREE.MeshStandardMaterial;
       const baseEmissive = node.tier === "core"
-        ? (isActive ? 1.0 : hovered ? 0.8 : 0.6)
-        : (isActive ? 2.5 : hovered ? 2.2 : isConnectedToActive ? 1.5 : 1);
+        ? (isActive ? 0.8 : hovered ? 0.6 : 0.4)
+        : (isActive ? 1.4 : hovered ? 1.1 : isConnectedToActive ? 0.8 : 0.5);
       mat.emissiveIntensity = baseEmissive + rippleFlash;
     }
   });
