@@ -51,7 +51,7 @@ export const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-end overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-end overflow-x-hidden"
     >
       {/* 3D Neural Network — Desktop */}
       <div className="absolute inset-0 hidden md:block">
@@ -226,7 +226,7 @@ export const HeroSection = () => {
       </AnimatePresence>
 
       {/* Content overlay — pointer-events-none so 3D canvas stays interactive */}
-      <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-8 md:pb-12 pointer-events-none">
+      <div className="relative z-10 px-6 md:px-12 lg:px-16 pb-24 md:pb-28 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -283,23 +283,59 @@ export const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="hidden md:flex flex-col items-center mt-12"
-        >
-          <span className="text-xs font-mono text-white/20 tracking-widest uppercase mb-2">
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-8 bg-gradient-to-b from-neural-primary/40 to-transparent"
-          />
-        </motion.div>
       </div>
+
+      {/* Scroll indicator — sits at bottom of hero, trail extends into next section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.8 }}
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center"
+      >
+        {/* Outer glow ring */}
+        <div className="relative flex items-center justify-center">
+          <motion.div
+            animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-12 h-12 rounded-full border border-neural-primary/20"
+          />
+          <motion.div
+            animate={{ scale: [1, 1.8, 1], opacity: [0.15, 0, 0.15] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+            className="absolute w-12 h-12 rounded-full border border-neural-primary/10"
+          />
+
+          {/* Mouse/trackpad icon */}
+          <motion.div
+            animate={{ y: [0, 3, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="relative w-6 h-10 rounded-full border-2 border-neural-primary/40 flex justify-center pt-2"
+          >
+            {/* Scroll dot inside mouse */}
+            <motion.div
+              animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1 h-2 rounded-full bg-neural-primary/70"
+            />
+          </motion.div>
+        </div>
+
+        {/* Label */}
+        <motion.span
+          animate={{ opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          className="mt-3 text-[10px] font-mono text-neural-primary/50 tracking-[0.25em] uppercase"
+        >
+          Scroll
+        </motion.span>
+
+        {/* Animated line trailing down */}
+        <motion.div
+          animate={{ scaleY: [0.5, 1, 0.5], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-px h-10 mt-2 bg-gradient-to-b from-neural-primary/40 to-transparent origin-top"
+        />
+      </motion.div>
     </section>
   );
 };
