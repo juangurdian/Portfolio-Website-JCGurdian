@@ -12,15 +12,17 @@ interface ConnectionProps {
   connection: ConnectionType;
   isActive?: boolean;
   dimmed?: boolean;
+  rippleTime?: number;
 }
 
-// Multiple pulse particles per connection
-const PULSE_COUNT = 3;
+// Data stream particles per connection
+const PULSE_COUNT = 5;
 
 export function NetworkConnectionLine({
   connection,
   isActive,
   dimmed,
+  rippleTime = Infinity,
 }: ConnectionProps) {
   const groupRef = useRef<THREE.Group>(null);
   const pulseRefs = useRef<(THREE.Mesh | null)[]>([]);
@@ -56,7 +58,7 @@ export function NetworkConnectionLine({
 
     const baseOpacity = dimmed ? 0.03 : isActive ? 0.4 : 0.06 + strength * 0.1;
     const material = new THREE.LineBasicMaterial({
-      color: isActive ? "#00d4ff" : "#00d4ff",
+      color: "#00d4ff",
       transparent: true,
       opacity: baseOpacity,
       depthWrite: false,
@@ -66,10 +68,18 @@ export function NetworkConnectionLine({
     return new THREE.Line(geometry, material);
   }, [sourceNode, targetNode, strength, isActive, dimmed]);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (!sourceNode || !targetNode) return;
 
-    const speed = isActive ? 0.6 : 0.2 + strength * 0.15;
+    // Ripple effect — temporary brightness and speed boost
+    const clock = state.clock.getElapsedTime();
+    const timeSinceRipple = clock - rippleTime;
+    const isRippling = timeSinceRipple > 0 && timeSinceRipple < 0.8;
+    const rippleIntensity = isRippling
+      ? Math.sin((timeSinceRipple / 0.8) * Math.PI)
+      : 0;
+
+    const speed = (isActive ? 0.6 : 0.2 + strength * 0.15) + rippleIntensity * 0.8;
 
     for (let i = 0; i < PULSE_COUNT; i++) {
       const pulse = pulseRefs.current[i];
@@ -82,7 +92,7 @@ export function NetworkConnectionLine({
       const [sx, sy, sz] = sourceNode.position;
       const [tx, ty, tz] = targetNode.position;
 
-      // Lerp along straight path (close enough for visual)
+      // Lerp along straight path
       pulse.position.set(
         sx + (tx - sx) * t,
         sy + (ty - sy) * t,
@@ -95,16 +105,19 @@ export function NetworkConnectionLine({
         ? fadeCurve * 0.1
         : isActive
           ? fadeCurve * 0.9
-          : fadeCurve * 0.5;
+          : fadeCurve * (0.5 + rippleIntensity * 0.4);
 
+      // Size variation across particles for depth
       const pulseScale = isActive ? 0.06 : 0.035;
-      pulse.scale.setScalar(pulseScale * (1 + fadeCurve * 0.5));
+      const sizeVariation = 0.6 + (i / PULSE_COUNT) * 0.8;
+      pulse.scale.setScalar(pulseScale * sizeVariation * (1 + fadeCurve * 0.5));
     }
 
-    // Update line opacity dynamically
+    // Update line opacity dynamically (includes ripple)
     if (lineObject) {
       const mat = lineObject.material as THREE.LineBasicMaterial;
-      mat.opacity = dimmed ? 0.04 : isActive ? 0.35 : 0.05 + strength * 0.08;
+      const baseOp = dimmed ? 0.04 : isActive ? 0.35 : 0.05 + strength * 0.08;
+      mat.opacity = baseOp + rippleIntensity * 0.3;
     }
   });
 
@@ -114,7 +127,7 @@ export function NetworkConnectionLine({
     <group ref={groupRef}>
       <primitive object={lineObject} />
 
-      {/* Multiple pulse particles */}
+      {/* Data stream particles */}
       {Array.from({ length: PULSE_COUNT }).map((_, i) => (
         <mesh
           key={i}

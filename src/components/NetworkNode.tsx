@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { NetworkNode as NodeType } from "@/data/network-nodes";
+import "./FresnelMaterial";
 
 interface NetworkNodeProps {
   node: NodeType;
@@ -12,6 +13,7 @@ interface NetworkNodeProps {
   isActive?: boolean;
   isConnectedToActive?: boolean;
   onHover?: (node: NodeType | null) => void;
+  rippleTime?: number | null;
 }
 
 export function NetworkNodeMesh({
@@ -20,11 +22,14 @@ export function NetworkNodeMesh({
   isActive,
   isConnectedToActive,
   onHover,
+  rippleTime = null,
 }: NetworkNodeProps) {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const glowRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
+  const wireframeRef = useRef<THREE.Mesh>(null);
+  const fresnelRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
   // Spring physics state
@@ -49,6 +54,7 @@ export function NetworkNodeMesh({
   // Scale fade-in tracking
   const mountTime = useRef(0);
   const hasSetMount = useRef(false);
+  const easedEntranceRef = useRef(0);
 
   const baseScale =
     node.tier === "core"
@@ -76,6 +82,7 @@ export function NetworkNodeMesh({
     const elapsed = t - mountTime.current;
     const entranceFactor = Math.min(elapsed / 1.5, 1);
     const easedEntrance = 1 - Math.pow(1 - entranceFactor, 3);
+    easedEntranceRef.current = easedEntrance;
 
     // Spring physics with fluid floating
     const springK = 1.2;
@@ -171,6 +178,52 @@ export function NetworkNodeMesh({
         ringRef.current.visible = false;
       }
     }
+
+    // Wireframe rotation — slow spin, faster when hovered/active
+    if (wireframeRef.current) {
+      const spinSpeed = isActive ? 0.4 : hovered ? 0.25 : 0.08;
+      wireframeRef.current.rotation.y += delta * spinSpeed;
+      wireframeRef.current.rotation.x += delta * spinSpeed * 0.3;
+      wireframeRef.current.scale.setScalar(
+        THREE.MathUtils.lerp(
+          wireframeRef.current.scale.x,
+          targetScale * 1.15,
+          0.08
+        )
+      );
+    }
+
+    // Fresnel shell — scale and opacity
+    if (fresnelRef.current) {
+      fresnelRef.current.scale.setScalar(
+        THREE.MathUtils.lerp(
+          fresnelRef.current.scale.x,
+          targetScale * 1.05,
+          0.08
+        )
+      );
+      const fresnelMat = fresnelRef.current.material as unknown as { opacity: number; glowIntensity: number };
+      fresnelMat.opacity = easedEntrance * (hovered || isActive ? 0.9 : 0.5);
+      fresnelMat.glowIntensity = isActive ? 0.8 : hovered ? 0.6 : 0.3;
+    }
+
+    // Ripple flash — brief emissive boost when ripple arrives
+    let rippleFlash = 0;
+    if (rippleTime !== null) {
+      const timeSinceRipple = t - rippleTime;
+      if (timeSinceRipple > 0 && timeSinceRipple < 0.6) {
+        rippleFlash = Math.sin((timeSinceRipple / 0.6) * Math.PI) * 0.8;
+      }
+    }
+
+    // Update emissive intensity dynamically (includes ripple)
+    if (meshRef.current) {
+      const mat = meshRef.current.material as THREE.MeshStandardMaterial;
+      const baseEmissive = node.tier === "core"
+        ? (isActive ? 1.0 : hovered ? 0.8 : 0.6)
+        : (isActive ? 2.5 : hovered ? 2.2 : isConnectedToActive ? 1.5 : 1);
+      mat.emissiveIntensity = baseEmissive + rippleFlash;
+    }
   });
 
   const handlePointerOver = (e: { stopPropagation: () => void }) => {
@@ -249,17 +302,45 @@ export function NetworkNodeMesh({
         <meshStandardMaterial
           color={dimmed ? "#1a1a2e" : node.color}
           emissive={dimmed ? "#0a0a15" : node.color}
-          emissiveIntensity={
-            node.tier === "core"
-              ? (isActive ? 1.0 : hovered ? 0.8 : 0.6)
-              : (isActive ? 2.5 : hovered ? 2.2 : isConnectedToActive ? 1.5 : 1)
-          }
+          emissiveIntensity={0.6}
           roughness={node.tier === "core" ? 0.35 : 0.1}
           metalness={node.tier === "core" ? 0.6 : 0.95}
           transparent={dimmed}
           opacity={dimmed ? 0.4 : 1}
         />
       </mesh>
+
+      {/* Fresnel edge glow shell */}
+      {!dimmed && (
+        <mesh ref={fresnelRef} scale={scale * 1.05}>
+          <sphereGeometry args={[1, 32, 32]} />
+          <fresnelShaderMaterial
+            color={node.color}
+            fresnelPower={node.tier === "core" ? 1.5 : 2.5}
+            opacity={easedEntranceRef.current * (hovered || isActive ? 0.9 : 0.5)}
+            glowIntensity={isActive ? 0.8 : hovered ? 0.6 : 0.3}
+            transparent
+            depthWrite={false}
+            side={THREE.BackSide}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+      )}
+
+      {/* Rotating wireframe overlay */}
+      {!dimmed && node.tier !== "tertiary" && (
+        <mesh ref={wireframeRef} scale={scale * 1.15}>
+          <icosahedronGeometry args={[1, 1]} />
+          <meshBasicMaterial
+            color={node.color}
+            wireframe
+            transparent
+            opacity={easedEntranceRef.current * (isActive ? 0.4 : hovered ? 0.3 : 0.12)}
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+      )}
 
       {/* Label — always visible for non-tertiary, enhanced on hover */}
       {showLabel && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useRef, useCallback, useMemo } from "react";
+import { Suspense, useRef, useCallback, useMemo, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import * as THREE from "three";
@@ -80,6 +80,62 @@ function NetworkScene({
     });
     return connected;
   }, [activeNodeId]);
+
+  // Ripple propagation — maps nodeId → rippleTime (clock time when ripple hits)
+  const rippleTimesRef = useRef<Map<string, number>>(new Map());
+  const [, forceRippleRender] = useState(0);
+
+  // Build adjacency map once
+  const adjacencyMap = useMemo(() => {
+    const map = new Map<string, string[]>();
+    networkConnections.forEach((conn) => {
+      if (!map.has(conn.source)) map.set(conn.source, []);
+      if (!map.has(conn.target)) map.set(conn.target, []);
+      map.get(conn.source)!.push(conn.target);
+      map.get(conn.target)!.push(conn.source);
+    });
+    return map;
+  }, []);
+
+  // Trigger ripple on hover
+  const hoveredIdRef = useRef<string | null>(null);
+  const handleHoverForRipple = useCallback(
+    (node: NodeType | null) => {
+      onHoverNode?.(node);
+      const newId = node?.id ?? null;
+      if (newId === hoveredIdRef.current) return;
+      hoveredIdRef.current = newId;
+
+      if (!newId) {
+        rippleTimesRef.current.clear();
+        forceRippleRender((c) => c + 1);
+        return;
+      }
+
+      // BFS from hovered node — assign ripple times with 0.15s delay per hop
+      const times = new Map<string, number>();
+      const now = performance.now() / 1000;
+      const queue: [string, number][] = [[newId, 0]];
+      const visited = new Set<string>([newId]);
+      times.set(newId, now);
+
+      while (queue.length > 0) {
+        const [current, depth] = queue.shift()!;
+        if (depth >= 2) continue;
+        const neighbors = adjacencyMap.get(current) ?? [];
+        for (const neighbor of neighbors) {
+          if (visited.has(neighbor)) continue;
+          visited.add(neighbor);
+          times.set(neighbor, now + (depth + 1) * 0.15);
+          queue.push([neighbor, depth + 1]);
+        }
+      }
+
+      rippleTimesRef.current = times;
+      forceRippleRender((c) => c + 1);
+    },
+    [adjacencyMap, onHoverNode]
+  );
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -210,12 +266,18 @@ function NetworkScene({
             !connectedToActive.has(conn.source) &&
             !connectedToActive.has(conn.target);
 
+          const rippleTime = Math.min(
+            rippleTimesRef.current.get(conn.source) ?? Infinity,
+            rippleTimesRef.current.get(conn.target) ?? Infinity
+          );
+
           return (
             <NetworkConnectionLine
               key={`${conn.source}-${conn.target}`}
               connection={conn}
               isActive={isActive}
               dimmed={dimmed}
+              rippleTime={rippleTime}
             />
           );
         })}
@@ -231,7 +293,7 @@ function NetworkScene({
               key={node.id}
               node={node}
               onClick={onNodeClick}
-              onHover={onHoverNode}
+              onHover={handleHoverForRipple}
               isActive={isSelfActive}
               isConnectedToActive={
                 hasActive
@@ -240,6 +302,7 @@ function NetworkScene({
                     : isConnected
                   : undefined
               }
+              rippleTime={rippleTimesRef.current.get(node.id) ?? null}
             />
           );
         })}
