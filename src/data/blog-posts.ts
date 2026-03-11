@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import grainImage from "@/assets/images/grain.jpg";
 
 export type BlogPost = {
@@ -7,7 +8,7 @@ export type BlogPost = {
   category: "3D Printing" | "Research" | "Videos" | "Personal";
   excerpt: string;
   content: string;
-  image: any; // Replace with proper image type
+  image: StaticImageData;
   tags: string[];
 };
 
@@ -27,10 +28,11 @@ export const blogPosts: BlogPost[] = [
     title: "The Impact of AI on Modern Software Development",
     date: "February 1, 2024",
     category: "Research",
-    excerpt: "How artificial intelligence is transforming the way we build software.",
-    content: "This is a detailed blog post about AI in software development...",
+    excerpt:
+      "How artificial intelligence is transforming the way we build software.",
+    content:
+      "This is a detailed blog post about AI in software development...",
     image: grainImage,
     tags: ["AI", "Software Development", "Technology"],
   },
-  // Add more blog posts as needed
-]; 
+];

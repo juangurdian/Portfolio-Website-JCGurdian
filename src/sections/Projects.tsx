@@ -1,155 +1,298 @@
+"use client";
+
 import Image from "next/image";
-import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
-import { ReactNode } from "react";
-import CheckCircle from "@/assets/icons/check-circle.svg";
-import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
-import grainImage from '@/assets/images/grain.jpg'
-import ArrowDown from '@/assets/icons/arrow-down.svg'
-import socialhour from "@/assets/images/socialhour.png"
-import orion from "@/assets/images/orion.png"
-import frogcrew from "@/assets/images/frogcrew.jpeg"
-import motivateme from "@/assets/images/motivatemePoster.png"
-import bole from "@/assets/images/boleto.png"
-import jasper from "@/assets/images/jasper.png"
+import { motion, useInView } from "framer-motion";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { primaryProjects, secondaryProjects } from "@/data/projects";
+import type { Project } from "@/data/projects";
+import { useRef } from "react";
 
-const portfolioProjects = [
-  {
-    company: "Bole.to",
-    year: "2025-Present",
-    title: "Bole.to - Social Ticketing & Events Operation Platform",
-    results: [
-      { title: "Co-founded with a friend; I serve as Co-CEO & CTO. Designing and building an all-in-one platform that combines ticketing and offline access control with a social layer to drive pre/post-show engagement." },
-      { title: "Led the web + mobile architecture (Next.js 14, React Native (Expo), TypeScript), integrating Hi.Events for ticketing, QR check-in that works with no signal (local validation, multi-gate sync, duplicate detection), and a wallet for attendees." },
-      { title: "Built the social stack (Supabase Realtime/Storage/Edge Functions): event feed with announcements & live polls and a D+1 camera that reveals photos the next day (moderation, scheduled jobs, push notifications). Set up Vercel/EAS CI/CD, Sentry + analytics, and payments (Stripe / dLocal / PayPal) for NIO/USD." },
-    ],
-    link: "https://www.mybole.to/",
-    image: bole,
-  },
-  {
-    company: "O.R.I.O.N",
-    year: "2025",
-    title: "O.R.I.O.N Customer Assistant - AI Platform for small businesses",
-    results: [
-      { title: "Developed a self-hosted AI assistant designed for small businesses (food trucks, shops, salons) to automate customer interactions such as FAQs, menu inquiries, and simple order taking." },
-      { title: "Implemented a retrieval-augmented generation (RAG) system using FAISS and sentence-transformers for accurate, context-aware responses from uploaded FAQs, menus, and documents." },
-      { title: "Built multi-channel support including a web chat widget, WhatsApp (Twilio/Cloud API), and Telegram, enabling businesses to connect with customers where they already are." },
-    ],
-    link: "https://github.com/juangurdian/CustomerService-AI-Automation",
-    image: orion,
-  },
-  {
-    company: "TCU",
-    year: "2025",
-    title: "FrogCrew — Sports Broadcasting Management Platform",
-    results: [
-      { title: "Developed a full-stack platform using Vue 3 and TailwindCSS for managing TCU's Sports Broadcasting crews, events, and scheduling, enabling seamless coordination of broadcast operations." },
-      { title: "Built features for admins to assign shifts, track crew member availability, and automate communications, while providing crew members with an intuitive interface to view upcoming events and manage profiles." },
-      { title: "Integrated with Spring Boot backend and PostgreSQL database with role-based security, designed with scalability in mind to accommodate growing broadcast operations." },
-    ],
-    link: "https://github.com/juangurdian/FrogCrew.v2",
-    image: frogcrew,
-  },{
-    company: "TCU",
-    year: "2025",
-    title: "MotivateMe  – Health & Wellness Mobile App",
-    results: [
-      { title: "Collaborated with UNT Health Science Center to design and build a cross-platform mobile app using React Native, Spring Boot, and PostgreSQL." },
-      { title: "Developed key features including SMART goal setting, daily journaling, biometrics tracking, chronic condition logging, motivational notifications, and a weekly calendar overview." },
-      { title: "Focused on accessibility and usability to support underserved communities in forming healthy habits and improving long-term wellness outcomes." },
-    ],
-    link: "https://seniordesign.cs.tcu.edu/",
-    image: motivateme,
-  },
-  {
-    company: "Jasper AI",
-    year: "2025",
-    title: "Jasper AI — Conversation-First Personal Productivity Assistant",
-    results: [
-      { title: "Conversation-first web assistant that turns casual chat/voice into actions across Tasks/Calendar/Email/Finance; a custom GPT-4.1 Nano intent engine parses multi-intent requests and outputs strict JSON for deterministic function routing with an Other/Clarify fallback." },
-      { title: "Modules: Tasks (NL add/edit/complete, priorities), Calendar (2-way Google sync, reschedule & conflict-fix), Email (Gmail summaries + tone-matched drafts), Finance (voice expense logging, reports); live: Gmail & Google Calendar · next: Outlook Mail/Calendar, Slack, Notion, Discord, Google Drive." },
-      { title: "Platforms & trust: runs in any browser + PWA; native iOS/Android and macOS/Windows wrappers planned; OAuth2 least-privilege, encryption, data isolation, no training on personal data; instrumentation for intent accuracy, action success, and latency." },
-    ],
-    link: "",
-    image: jasper,
-  },
-  {
-    company: "Social Hour Studio",
-    year: "2024",
-    title: "Marketing Agency Website",
-    results: [
-      { title: "Collaborated closely with the client to design and develop a modern, responsive website that effectively showcases their marketing services and portfolio, ensuring their brand identity was perfectly represented." },
-      { title: "Built a custom website using HTML, CSS, and JavaScript, implementing smooth animations and transitions to create an engaging user experience that aligns with the agency's creative vision." },
-      { title: "Provided comprehensive web hosting and maintenance services, ensuring optimal performance, security updates, and continuous improvements based on client feedback and analytics." },
-    ],
-    link: "https://socialhourstudio.co",
-    image: socialhour,
-  },
-  
-];
-
-export const ProjectsSection = () => {
-  function result(value: { title: string; }, index: number, array: { title: string; }[]): ReactNode {
-    throw new Error("Function not implemented.");
-  }
-
-  return <section id="projects" className="pb-16 lg:py-24">
-    <div className="container text-white">
-      <div className="flex justify-center">
-        <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">Real-world Results</p>
+// Visual connection from the neural network above
+function NetworkBridge() {
+  return (
+    <div className="flex justify-center mb-12 relative">
+      {/* Vertical connection line from hero network */}
+      <div className="h-24 w-px bg-gradient-to-b from-neural-primary/30 via-neural-primary/15 to-transparent relative">
+        <motion.div
+          className="absolute left-0 w-px h-8 bg-gradient-to-b from-neural-primary/60 to-transparent"
+          animate={{ top: ["-10%", "110%"] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        />
       </div>
-      <h2 className="font-serif text-3xl md:text-5xl text-center mt-6">Featured Projects</h2>
-      <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">Projects</p>
-      <div className="mt-10 md:mt-20 flex flex-col gap-20">
-        {portfolioProjects.map((project, projectIndex) => (
-          <div key={project.title} className="bg-gray-800 rounded-3xl relative z-0
-           overflow-hidden after:-z-10 after:content-[''] after:absolute 
-           after:inset-0 after:outline-2 after:outline after:-outline-offset-2 
-           after:rounded-3xl after:outline-white/20 px-8 pt-8 md:pt-12 md:px-10 after:pointer-events-none lg:pt-16 lg:px-20 sticky" style={{
-            top: `calc(${projectIndex * 100}px + 50px)`,
-           }}>
-            <div className="absolute inset-0 -z-10 opacity-5" style={{
-              backgroundImage: `url(${grainImage.src})`,
-            }}>
-
-            </div>
-            <div className="lg:grid lg:grid-cols-2 lg:gap-16">
-              <div className="lg:pb-16">
-              <div className="bg-gradient-to-r from-emerald-300 to-sky-400 
-              inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text">
-
-                <span>{project.company}</span>
-                <span>&bull;</span>
-                <span>{project.year}</span>
-              </div>
-            
-            <h3 className="font-serif text-2xl mt-2 md:mt-5 md:text-4xl">{project.title}</h3>
-            <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
-            <ul className="flex flex-col gap-4 mt-4 md:mt-5">
-            {project.results.map((result, index) => (
-              <li key={index} className="flex gap-2 text-sm text-white/50 md:text-base">
-                <CheckCircle className="size-5 md:size-6" />
-                <span>{result.title}</span>
-              </li>
-            ))}
-            </ul>
-            <a href={project.link}>
-            <button className="bg-white text-gray-950 h-12 
-                              w-full rounded-xl font-semibold inline-flex items-center 
-                              justify-center gap-2 mt-8 md:w-auto px-6">
-                <span>Visit Repository</span>
-                <ArrowUpRightIcon classNAme="size-4"/>
-              </button>
-            </a>
-            </div>
-            <div className="relative">
-            <Image src={project.image} alt={project.title} className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none" />
-          </div>
-          </div>
-          </div>
-        ))}
+      {/* Node at the junction */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+        <div className="w-3 h-3 rounded-full bg-neural-primary/60" style={{ boxShadow: "0 0 15px rgba(0,212,255,0.4)" }} />
       </div>
     </div>
-  </section>;
+  );
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      className="glass-card group hover:border-neural-primary/30 transition-all duration-500 overflow-hidden relative"
+    >
+      {/* Hover glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neural-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Connection dot on left edge */}
+      <div className="absolute left-0 top-8 w-1.5 h-1.5 -translate-x-1/2 rounded-full bg-neural-primary/50" style={{ boxShadow: "0 0 8px rgba(0,212,255,0.3)" }} />
+
+      <div className="p-6 md:p-8">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+          <div>
+            {/* Meta line with node indicator */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-neural-primary" />
+              <span className="font-mono text-xs text-neural-primary tracking-wider font-bold">
+                {project.company}
+              </span>
+              <span className="text-white/15">/</span>
+              <span className="font-mono text-xs text-white/35">{project.year}</span>
+              <span className="text-white/15">/</span>
+              <span className="font-mono text-xs text-white/35">{project.role}</span>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-neural-primary transition-colors duration-300">
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-white/45 text-sm leading-relaxed mb-4">
+              {project.description}
+            </p>
+
+            {/* Key Results with staggered reveal */}
+            <ul className="space-y-2 mb-5">
+              {project.results.map((result, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: index * 0.15 + i * 0.1 + 0.3 }}
+                  className="flex gap-2 text-sm text-white/55"
+                >
+                  <span className="text-neural-primary mt-0.5 shrink-0">&#9656;</span>
+                  <span>{result}</span>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* Tech pills */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              {project.tech.map((t) => (
+                <span
+                  key={t}
+                  className="px-2.5 py-1 text-xs font-mono bg-neural-primary/[0.07] border border-neural-primary/15 rounded text-neural-primary/70 hover:bg-neural-primary/15 hover:text-neural-primary transition-colors cursor-default"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {/* Links */}
+            <div className="flex gap-3">
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-neural-primary/10 border border-neural-primary/20 text-neural-primary text-sm font-semibold hover:bg-neural-primary/20 hover:shadow-node-glow transition-all duration-300"
+                >
+                  <FaExternalLinkAlt className="text-xs" />
+                  Visit
+                </a>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-white/50 text-sm font-semibold hover:border-neural-primary/20 hover:text-neural-primary/80 transition-all duration-300"
+                >
+                  <FaGithub className="text-sm" />
+                  Code
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Screenshot */}
+          <div className="mt-6 lg:mt-0 relative overflow-hidden rounded-lg">
+            <Image
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover rounded-lg opacity-70 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700 ease-out"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-neural-bg/70 via-transparent to-neural-bg/20 rounded-lg" />
+            {/* Network-style corner decoration */}
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="w-1 h-1 rounded-full bg-neural-primary/60" />
+              <div className="w-6 h-px bg-neural-primary/30" />
+              <div className="w-1 h-1 rounded-full bg-neural-primary/40" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function SecondaryCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="glass-card p-5 group hover:border-neural-primary/20 transition-all duration-300 relative overflow-hidden"
+    >
+      {/* Hover gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neural-primary/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <div className="relative">
+        {/* Meta */}
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-1 h-1 rounded-full bg-neural-primary/60" />
+          <span className="font-mono text-[10px] text-neural-primary tracking-wider font-bold">
+            {project.company}
+          </span>
+          <span className="text-white/15">/</span>
+          <span className="font-mono text-[10px] text-white/35">{project.year}</span>
+        </div>
+
+        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-neural-primary transition-colors duration-300">
+          {project.title}
+        </h3>
+
+        <p className="text-white/35 text-sm leading-relaxed mb-3 line-clamp-2">
+          {project.description}
+        </p>
+
+        {/* Tech pills */}
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {project.tech.slice(0, 4).map((t) => (
+            <span
+              key={t}
+              className="px-2 py-0.5 text-[10px] font-mono bg-white/[0.04] border border-white/[0.06] rounded text-white/40"
+            >
+              {t}
+            </span>
+          ))}
+          {project.tech.length > 4 && (
+            <span className="px-2 py-0.5 text-[10px] font-mono text-white/25">
+              +{project.tech.length - 4}
+            </span>
+          )}
+        </div>
+
+        {/* Links */}
+        <div className="flex gap-3">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/35 hover:text-neural-primary transition-colors flex items-center gap-1"
+            >
+              <FaExternalLinkAlt className="text-[10px]" />
+              Visit
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/35 hover:text-white/60 transition-colors flex items-center gap-1"
+            >
+              <FaGithub className="text-xs" />
+              Code
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export const ProjectsSection = () => {
+  return (
+    <section id="projects" className="py-20 lg:py-28 relative">
+      <div className="container">
+        {/* Bridge from the neural network hero */}
+        <NetworkBridge />
+
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-neural-primary" style={{ boxShadow: "0 0 10px rgba(0,212,255,0.4)" }} />
+            <span className="font-mono text-xs text-neural-primary tracking-widest uppercase font-bold">
+              Featured Work
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-neural-primary/20 to-transparent" />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-white mt-4">
+            Projects
+          </h2>
+          <p className="text-white/35 mt-3 max-w-lg">
+            Production apps, AI systems, and open-source tools — each a node in the network.
+          </p>
+        </motion.div>
+
+        {/* Primary projects — connected by vertical line */}
+        <div className="relative">
+          {/* Vertical connection between cards */}
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-neural-primary/15 via-neural-primary/10 to-transparent hidden lg:block" />
+
+          <div className="space-y-8 mb-16">
+            {primaryProjects.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} />
+            ))}
+          </div>
+        </div>
+
+        {/* Secondary projects */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-8"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+            <h3 className="font-mono text-xs text-white/30 tracking-widest uppercase">
+              More Projects
+            </h3>
+            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {secondaryProjects.map((project, i) => (
+            <SecondaryCard key={project.id} project={project} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };

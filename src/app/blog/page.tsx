@@ -1,46 +1,58 @@
-import { SectionHeader } from "@/components/Sectionheader";
-import { Card } from "@/components/Card";
-import grainImage from "@/assets/images/grain.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { blogPosts } from "@/data/blog-posts";
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-gray-950 text-white">
+    <main className="min-h-screen bg-neural-bg text-white">
       <div className="container py-32">
-        <SectionHeader
-          title="My Blog & Projects"
-          eyebrow="Content"
-          description="Explore my thoughts, research, 3D prints, project videos, and more."
-        />
-        
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mb-12">
+          <span className="font-mono text-xs text-neural-primary tracking-widest uppercase">
+            Content
+          </span>
+          <h1 className="text-3xl md:text-5xl font-black text-white mt-3">
+            Blog & Projects
+          </h1>
+          <p className="text-white/40 mt-3 max-w-lg">
+            Explore my thoughts, research, 3D prints, project videos, and more.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <Link href={`/blog/${post.slug}`} key={post.slug}>
-              <Card className="p-6 relative overflow-hidden h-full hover:scale-[1.02] transition-transform duration-300">
-                <div className="absolute inset-0 opacity-5 -z-10" style={{
-                  backgroundImage: `url(${grainImage.src})`,
-                }}></div>
-                <div className="bg-gradient-to-r from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text mb-4">
-                  <span>{post.category}</span>
-                  <span>&bull;</span>
-                  <span>{post.date}</span>
+              <div className="glass-card p-5 h-full hover:border-neural-primary/20 transition-all duration-300 group">
+                {/* Category & date */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="font-mono text-[10px] text-neural-primary tracking-wider uppercase">
+                    {post.category}
+                  </span>
+                  <span className="text-white/20">/</span>
+                  <span className="font-mono text-[10px] text-white/30">
+                    {post.date}
+                  </span>
                 </div>
-                <h3 className="text-xl font-serif mb-2">{post.title}</h3>
-                <p className="text-white/60">{post.excerpt}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
+
+                <h3 className="text-lg font-bold mb-2 group-hover:text-neural-primary transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-white/40 text-sm mb-4">{post.excerpt}</p>
+
+                <div className="flex flex-wrap gap-1.5">
                   {post.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-white/10 px-2 py-1 rounded-full">
+                    <span
+                      key={tag}
+                      className="text-[10px] font-mono bg-white/[0.03] border border-white/[0.06] px-2 py-0.5 rounded text-white/40"
+                    >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </Card>
+              </div>
             </Link>
           ))}
         </div>
       </div>
     </main>
   );
-} 
+}
