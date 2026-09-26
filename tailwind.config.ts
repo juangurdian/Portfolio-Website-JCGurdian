@@ -22,32 +22,37 @@ const config: Config = {
     },
     extend: {
       colors: {
-        neural: {
-          bg: "#060606",
-          primary: "#00d4ff",
-          secondary: "#38bdf8",
-          tertiary: "#60a5fa",
-          muted: "rgba(255,255,255,0.5)",
-          surface: "#0a0a0a",
-          card: "#0d1117",
-          "card-border": "rgba(0,212,255,0.12)",
+        accent: {
+          DEFAULT: "#c9a227",
+          light: "#dbb746",
+          dark: "#a68518",
+          muted: "rgba(201, 162, 39, 0.15)",
+        },
+        surface: {
+          bg: "#0c0c0c",
+          card: "#141414",
+          elevated: "#1a1a1a",
+          border: "rgba(255, 255, 255, 0.08)",
+        },
+        terminal: {
+          green: "#4ade80",
+          amber: "#fbbf24",
+          bg: "#0a0a0a",
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"],
-        serif: ["var(--font-serif)", "serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "Menlo", "monospace"],
       },
       animation: {
         "ping-large": "ping-large 1s ease-in-out infinite",
         "move-left": "move-left 1s linear infinite",
         "move-right": "move-right 1s linear infinite",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "node-float": "node-float 6s ease-in-out infinite",
-        "connection-pulse": "connection-pulse 2s ease-in-out infinite",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "slide-in-left": "slide-in-left 0.5s ease-out forwards",
-        "glow-line": "glow-line 3s ease-in-out infinite",
+        "terminal-blink": "terminal-blink 1s step-end infinite",
+        "float": "float 6s ease-in-out infinite",
       },
       keyframes: {
         "ping-large": {
@@ -64,36 +69,27 @@ const config: Config = {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0%)" },
         },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "1" },
-        },
-        "node-float": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "connection-pulse": {
-          "0%": { opacity: "0.15", transform: "translateX(-100%)" },
-          "50%": { opacity: "0.6" },
-          "100%": { opacity: "0.15", transform: "translateX(100%)" },
-        },
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in-left": {
-          "0%": { opacity: "0", transform: "translateX(-30px)" },
+          "0%": { opacity: "0", transform: "translateX(-20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
-        "glow-line": {
-          "0%, 100%": { opacity: "0.15" },
-          "50%": { opacity: "0.4" },
+        "terminal-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       boxShadow: {
-        "node-glow": "0 0 20px rgba(0,212,255,0.4)",
-        "node-glow-lg": "0 0 40px rgba(0,212,255,0.3)",
-        "card-glow": "0 0 30px rgba(0,212,255,0.1)",
+        "card": "0 1px 3px rgba(0,0,0,0.3)",
+        "card-hover": "0 4px 12px rgba(0,0,0,0.4)",
+        "accent-glow": "0 0 20px rgba(201, 162, 39, 0.2)",
       },
     },
   },

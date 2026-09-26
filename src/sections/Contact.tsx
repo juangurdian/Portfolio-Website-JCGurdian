@@ -3,8 +3,8 @@
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { HiEnvelope, HiMapPin, HiDocumentText } from "react-icons/hi2";
 
 interface FormData {
   name: string;
@@ -46,7 +46,7 @@ export const ContactSection = () => {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_name: "JC Gurdian",
+          to_name: "Juan Gurdian",
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? ""
       );
@@ -64,20 +64,17 @@ export const ContactSection = () => {
   return (
     <section id="contact" className="py-20 lg:py-28">
       <div className="container">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-12 lg:mb-16"
         >
-          <span className="font-mono text-xs text-neural-primary tracking-widest uppercase">
-            Get in Touch
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-white mt-3">
-            Let&apos;s Build Something
-          </h2>
-          <p className="text-white/40 mt-3 max-w-lg">
-            Have a project in mind? Let&apos;s talk.
+          <span className="section-header">Get in Touch</span>
+          <h2 className="section-title">Let&apos;s Connect</h2>
+          <p className="text-stone-400 mt-4 max-w-lg">
+            Open to Tampa hybrid/onsite and US remote AI engineering roles where I can own systems end to end.
           </p>
         </motion.div>
 
@@ -87,13 +84,13 @@ export const ContactSection = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-6 md:p-8"
+            className="card p-6 md:p-8"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-xs font-mono text-white/40 tracking-wider uppercase mb-2"
+                  className="block text-xs font-mono text-stone-500 uppercase tracking-wider mb-2"
                 >
                   Name
                 </label>
@@ -104,14 +101,14 @@ export const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-neural-primary/50 transition-colors placeholder:text-white/20"
+                  className="w-full bg-surface-elevated border border-surface-border rounded-lg px-4 py-3 text-stone-100 text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-stone-600"
                   placeholder="Your name"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-xs font-mono text-white/40 tracking-wider uppercase mb-2"
+                  className="block text-xs font-mono text-stone-500 uppercase tracking-wider mb-2"
                 >
                   Email
                 </label>
@@ -122,14 +119,14 @@ export const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-neural-primary/50 transition-colors placeholder:text-white/20"
+                  className="w-full bg-surface-elevated border border-surface-border rounded-lg px-4 py-3 text-stone-100 text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-stone-600"
                   placeholder="your@email.com"
                 />
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-xs font-mono text-white/40 tracking-wider uppercase mb-2"
+                  className="block text-xs font-mono text-stone-500 uppercase tracking-wider mb-2"
                 >
                   Message
                 </label>
@@ -140,8 +137,8 @@ export const ContactSection = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-neural-primary/50 transition-colors resize-none placeholder:text-white/20"
-                  placeholder="Tell me about your project..."
+                  className="w-full bg-surface-elevated border border-surface-border rounded-lg px-4 py-3 text-stone-100 text-sm focus:outline-none focus:border-accent/50 transition-colors resize-none placeholder:text-stone-600"
+                  placeholder="Tell me about the role or project..."
                 />
               </div>
 
@@ -150,12 +147,12 @@ export const ContactSection = () => {
                 disabled={status === "sending"}
                 className={`w-full py-3 px-6 rounded-lg font-semibold text-sm transition-all duration-300 ${
                   status === "sending"
-                    ? "bg-neural-primary/20 text-neural-primary/50 cursor-wait"
+                    ? "bg-accent/20 text-accent/50 cursor-wait"
                     : status === "success"
                       ? "bg-green-500/20 text-green-400 border border-green-500/30"
                       : status === "error"
                         ? "bg-red-500/20 text-red-400 border border-red-500/30"
-                        : "bg-neural-primary/10 text-neural-primary border border-neural-primary/30 hover:bg-neural-primary/20"
+                        : "bg-accent text-stone-950 hover:bg-accent-light"
                 }`}
               >
                 {status === "sending"
@@ -163,7 +160,7 @@ export const ContactSection = () => {
                   : status === "success"
                     ? "Message Sent!"
                     : status === "error"
-                      ? "Failed — Try Again"
+                      ? "Failed. Try Again"
                       : "Send Message"}
               </button>
             </form>
@@ -176,34 +173,22 @@ export const ContactSection = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="glass-card p-6 md:p-8">
-              <h3 className="text-lg font-bold text-white mb-5">
+            <div className="card p-6 md:p-8">
+              <h3 className="text-lg font-serif font-semibold text-stone-100 mb-5">
                 Contact Information
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-neural-primary/10 border border-neural-primary/20 flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-neural-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                    <HiEnvelope className="w-4 h-4 text-accent" />
                   </div>
                   <div>
-                    <p className="text-xs font-mono text-white/30 tracking-wider uppercase">
+                    <p className="text-xs font-mono text-stone-500 uppercase tracking-wider">
                       Email
                     </p>
                     <a
                       href="mailto:juangurdian2003@gmail.com"
-                      className="text-white hover:text-neural-primary transition-colors text-sm"
+                      className="text-stone-100 hover:text-accent transition-colors text-sm"
                     >
                       juangurdian2003@gmail.com
                     </a>
@@ -211,94 +196,77 @@ export const ContactSection = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-neural-primary/10 border border-neural-primary/20 flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-neural-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                    <HiMapPin className="w-4 h-4 text-accent" />
                   </div>
                   <div>
-                    <p className="text-xs font-mono text-white/30 tracking-wider uppercase">
+                    <p className="text-xs font-mono text-stone-500 uppercase tracking-wider">
                       Location
                     </p>
-                    <span className="text-white text-sm">Nicaragua</span>
+                    <span className="text-stone-100 text-sm">Tampa, FL</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                    <HiDocumentText className="w-4 h-4 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-mono text-stone-500 uppercase tracking-wider">
+                      Resume
+                    </p>
+                    <a
+                      href="/resume.pdf"
+                      className="text-stone-100 hover:text-accent transition-colors text-sm"
+                    >
+                      Download PDF
+                    </a>
                   </div>
                 </div>
               </div>
 
               {/* Socials */}
-              <div className="mt-6 pt-6 border-t border-white/[0.06]">
-                <p className="text-xs font-mono text-white/30 tracking-wider uppercase mb-3">
-                  Social
+              <div className="mt-6 pt-6 border-t border-surface-border">
+                <p className="text-xs font-mono text-stone-500 uppercase tracking-wider mb-3">
+                  Connect
                 </p>
                 <div className="flex gap-3">
-                  {[
-                    {
-                      icon: FaLinkedin,
-                      href: "https://linkedin.com/in/juan-gurdian",
-                      label: "LinkedIn",
-                    },
-                    {
-                      icon: FaGithub,
-                      href: "https://github.com/juangurdian",
-                      label: "GitHub",
-                    },
-                    {
-                      icon: FaInstagram,
-                      href: "https://www.instagram.com/jcgurdian03/",
-                      label: "Instagram",
-                    },
-                    {
-                      icon: FaXTwitter,
-                      href: "https://x.com",
-                      label: "X",
-                    },
-                  ].map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-neural-primary hover:border-neural-primary/20 transition-all"
-                      aria-label={social.label}
-                    >
-                      <social.icon className="text-sm" />
-                    </a>
-                  ))}
+                  <a
+                    href="https://linkedin.com/in/juan-gurdian"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-lg bg-surface-elevated border border-surface-border flex items-center justify-center text-stone-400 hover:text-accent hover:border-accent/30 transition-all"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin className="text-base" />
+                  </a>
+                  <a
+                    href="https://github.com/juangurdian"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-lg bg-surface-elevated border border-surface-border flex items-center justify-center text-stone-400 hover:text-accent hover:border-accent/30 transition-all"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub className="text-base" />
+                  </a>
                 </div>
               </div>
             </div>
 
             {/* Availability */}
-            <div className="glass-card p-6 md:p-8">
+            <div className="card p-6 md:p-8">
               <div className="flex items-center gap-3 mb-3">
-                <div className="relative">
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                  <div className="absolute inset-0 w-3 h-3 rounded-full bg-green-400 animate-ping" />
-                </div>
-                <h3 className="text-lg font-bold text-white">
-                  Available for new projects
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+                </span>
+                <h3 className="text-lg font-serif font-semibold text-stone-100">
+                  Available for new roles
                 </h3>
               </div>
-              <p className="text-white/40 text-sm">
-                I&apos;m currently open to new opportunities and collaborations — especially
-                AI-powered projects and Latin American businesses. Let&apos;s build something
-                together.
+              <p className="text-sm text-stone-400 leading-relaxed">
+                Looking for early/mid AI Engineer roles in Tampa (hybrid/onsite) or US remote 
+                where I can own systems end to end.
               </p>
             </div>
           </motion.div>

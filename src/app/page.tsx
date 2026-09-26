@@ -1,26 +1,20 @@
 import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
-import { ProjectsSection } from "@/sections/Projects";
-import { AboutSection } from "@/sections/About";
+import { WorkSection } from "@/sections/Work";
 import { ExperienceSection } from "@/sections/Experience";
-import { MissionSection } from "@/sections/Mission";
-import { TechStackSection } from "@/sections/TechStack";
+import { TerminalSection } from "@/sections/Terminal";
 import { OpenSourceSection } from "@/sections/OpenSource";
 import { ContactSection } from "@/sections/Contact";
 import { Footer } from "@/sections/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-surface-bg">
       <Header />
       <HeroSection />
-      <section id="projects-wrapper">
-        <ProjectsSection />
-      </section>
-      <AboutSection />
+      <WorkSection />
       <ExperienceSection />
-      <MissionSection />
-      <TechStackSection />
+      <TerminalSection />
       <OpenSourceSection />
       <ContactSection />
       <Footer />

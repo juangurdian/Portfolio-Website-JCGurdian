@@ -1,0 +1,156 @@
+{
+  "profile": {
+    "name": "Juan Gurdian",
+    "headline": "AI Engineer @ yorCMO | Co-Founder & CTO, Gynka | Production agents, RAG, MCP | Tampa",
+    "location": "Tampa, FL",
+    "availability": "Open to Tampa hybrid/onsite and US remote AI engineering roles",
+    "email": "juangurdian2003@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/juan-gurdian",
+    "github": "https://github.com/juangurdian",
+    "education": {
+      "degree": "B.S. Computer Information Technology",
+      "school": "Texas Christian University (TCU)",
+      "graduated": "May 2025"
+    },
+    "certifications": ["Claude Code Certified"]
+  },
+  "about": "I build and own production LLM and agent systems for real clients, not demos. Architecture, backend, frontend, integrations, and the product conversations all sit with me. At yorCMO I ship tools fractional CMOs and professional firms use every day. As Co-Founder and CTO of Gynka, I am the sole technical owner of the product: frontend, backend, data, and infrastructure. I use Claude Code and Codex to move faster on implementation and review. I still own design, correctness, evals, and what reaches production.",
+  "experience": [
+    {
+      "role": "AI Engineer",
+      "company": "yorCMO",
+      "companyDescription": "AI-native fractional CMO firm and Anthropic partner",
+      "dateRange": "Sep 2025 to present",
+      "current": true,
+      "highlights": [
+        "Linky (platform lead): autonomous LinkedIn outreach platform on LLM agents. Per client org sources ~6,000 companies and ~12,000 prospects from a defined ICP, researches each, drafts outreach in the user's voice (~90% approved without edits), human approval before send. Directed one engineer.",
+        "Built Linky enrichment pipelines (email, phone, LinkedIn, activity, region, fit scoring) and the production agentic loop (daily invites, acceptance detection, three-message cadence, edits feed back as training signal).",
+        "CORE Growth Platform: built 4 of 11 production LLM agents serving 24 client orgs across 25+ integrations (LinkedIn/Unipile, WordPress, HubSpot, Google Analytics and Ads, Mailchimp, Klaviyo, Apify, Notion, Shopify, Microsoft Graph), plus shared platform structure and backend maintenance.",
+        "Built and maintains the MCP server exposing platform agents as tools inside Claude, plus the shared orchestration/tool-calling layer.",
+        "PanelCast: meeting-to-content pipeline (brand/voice profiles; on-brand blog posts, per-attendee LinkedIn posts, short-form video).",
+        "Practice Growth System: internal lead on a five-agent build from client meeting transcripts (Fathom, Microsoft Graph, approval queue). Pilot delivered on schedule; second org onboarded with no firm-specific code.",
+        "Owned guardrails (PII redaction, role-aware prompts), evals (prompt regression, A/B), RBAC/audit logs, backend services across Modal, Vercel, Supabase, AWS with Docker, GitHub Actions, observability, per-agent cost/latency controls."
+      ],
+      "tech": ["Python", "TypeScript", "Next.js", "FastAPI", "Supabase", "AWS", "Modal", "Vercel", "Docker", "LangChain", "OpenAI", "Anthropic Claude", "MCP"]
+    },
+    {
+      "role": "Co-Founder & CTO",
+      "company": "Gynka",
+      "companyUrl": "https://gynka.app",
+      "dateRange": "Ongoing",
+      "current": true,
+      "highlights": [
+        "Sole technical owner of an AI fitness coaching product in closed beta.",
+        "Architected the multi-agent AI coach engine on AWS (FastAPI, Pydantic AI, Supabase, ARQ/Redis, RevenueCat).",
+        "Built the full iOS and Android app in React Native, distributed via TestFlight.",
+        "Coach ingests biomarker data from wearables and adapts each workout toward the user's goal.",
+        "Owns schemas, APIs, infra, release process."
+      ],
+      "tech": ["React Native", "FastAPI", "AWS", "Supabase", "Redis", "Pydantic AI", "RevenueCat"]
+    },
+    {
+      "role": "ML Intern",
+      "company": "AtomChat",
+      "dateRange": "Jul to Oct 2024",
+      "highlights": [
+        "Built ML models for chat analytics and user behavior prediction",
+        "Implemented NLP features for sentiment analysis"
+      ]
+    },
+    {
+      "role": "Digital Transformation Intern",
+      "company": "Cargill",
+      "dateRange": "Jun to Aug 2023",
+      "highlights": [
+        "Led digital transformation initiatives for supply chain operations",
+        "Built data dashboards and automation tools"
+      ]
+    }
+  ],
+  "projects": {
+    "production": [
+      {
+        "name": "Linky",
+        "type": "Autonomous LinkedIn Outreach Platform",
+        "company": "yorCMO",
+        "description": "Platform lead on autonomous LinkedIn outreach platform. Per client org sources ~6,000 companies and ~12,000 prospects from a defined ICP, researches each prospect, and drafts outreach in the user's voice. About 90% of drafts approved without edits, with human approval before send.",
+        "metrics": ["~6,000 companies sourced per client", "~12,000 prospects researched per client", "~90% drafts approved without edits"],
+        "tech": ["Python", "LLM Agents", "LinkedIn API", "Enrichment Pipelines"],
+        "role": "Platform Lead, directed one engineer"
+      },
+      {
+        "name": "CORE Growth Platform",
+        "type": "Multi-Agent Platform",
+        "company": "yorCMO",
+        "description": "Built 4 of 11 production LLM agents serving 24 client orgs across 25+ integrations.",
+        "metrics": ["4 of 11 production agents", "24 client orgs", "25+ integrations"],
+        "integrations": ["LinkedIn/Unipile", "WordPress", "HubSpot", "Google Analytics", "Google Ads", "Mailchimp", "Klaviyo", "Apify", "Notion", "Shopify", "Microsoft Graph"],
+        "tech": ["Python", "TypeScript", "LLM Agents", "Multiple APIs"]
+      },
+      {
+        "name": "PanelCast",
+        "type": "Meeting-to-Content Pipeline",
+        "company": "yorCMO",
+        "description": "Meeting-to-content pipeline that transforms recorded meetings into on-brand blog posts, per-attendee LinkedIn posts, and short-form video using brand/voice profiles.",
+        "tech": ["Python", "FastAPI", "OpenAI", "Content Generation"]
+      },
+      {
+        "name": "MCP Server",
+        "type": "Tool Integration",
+        "company": "yorCMO",
+        "description": "Built and maintains the MCP server exposing platform agents as tools inside Claude, plus the shared orchestration/tool-calling layer.",
+        "tech": ["TypeScript", "MCP Protocol", "Claude Integration"]
+      },
+      {
+        "name": "Practice Growth System",
+        "type": "Multi-Agent System",
+        "company": "yorCMO",
+        "description": "Internal lead on a five-agent build from client meeting transcripts (Fathom, Microsoft Graph, approval queue). Pilot delivered on schedule; second org onboarded with no firm-specific code.",
+        "tech": ["Python", "LLM Agents", "Fathom", "Microsoft Graph"]
+      },
+      {
+        "name": "Gynka",
+        "type": "AI Fitness Coaching App",
+        "company": "Gynka (Co-Founder & CTO)",
+        "description": "Sole technical owner of AI fitness coaching product in closed beta. Multi-agent AI coach engine that ingests biomarker data from wearables and adapts each workout toward the user's goal.",
+        "tech": ["React Native", "FastAPI", "AWS", "Pydantic AI", "Supabase", "Redis", "RevenueCat"],
+        "url": "https://gynka.app"
+      }
+    ],
+    "openSource": [
+      {
+        "name": "Wingman",
+        "description": "TypeScript MCP bridge letting Grok/Cursor drive local Codex and Claude Code sessions.",
+        "github": "https://github.com/juangurdian/wingman",
+        "tech": ["TypeScript", "MCP", "Codex", "Claude Code"]
+      },
+      {
+        "name": "Vault-AI",
+        "description": "Local-first AI with RAG (Retrieval-Augmented Generation).",
+        "github": "https://github.com/juangurdian/Vault-AI",
+        "tech": ["Python", "RAG", "Local AI"]
+      },
+      {
+        "name": "Bug Butler",
+        "description": "Slack + FastAPI bot that turns Slack bug reports into structured GitHub Issues. NOT a VS Code extension.",
+        "github": "https://github.com/juangurdian/bug-butler",
+        "tech": ["Python", "FastAPI", "Slack API", "GitHub API"]
+      }
+    ]
+  },
+  "skills": {
+    "ai_ml": ["LLM Agents", "RAG", "MCP Protocol", "Prompt Engineering", "Evals", "Guardrails", "OpenAI", "Anthropic Claude", "LangChain", "Pydantic AI"],
+    "backend": ["Python", "FastAPI", "Node.js", "TypeScript", "AWS", "Modal", "Supabase", "PostgreSQL", "Redis"],
+    "frontend": ["React", "Next.js", "React Native", "TypeScript", "Tailwind CSS"],
+    "infrastructure": ["Docker", "GitHub Actions", "Vercel", "AWS", "Observability"],
+    "tools": ["Claude Code", "Codex", "Git", "MCP"]
+  },
+  "commands": {
+    "whoami": "Juan Gurdian, AI Engineer at yorCMO and Co-Founder & CTO at Gynka. Based in Tampa, FL.",
+    "experience": "Current: AI Engineer at yorCMO (Sep 2025-present), Co-Founder & CTO at Gynka. Previous: ML Intern at AtomChat (Jul-Oct 2024), Digital Transformation Intern at Cargill (Jun-Aug 2023). B.S. Computer Information Technology from TCU (May 2025).",
+    "projects": "Production work: Linky (autonomous LinkedIn outreach, ~90% draft approval), CORE Growth Platform (4/11 agents, 24 client orgs), PanelCast (meeting-to-content), MCP server for Claude integration, Gynka (AI fitness coach). Open source: Wingman, Vault-AI, Bug Butler.",
+    "contact": "Email: juangurdian2003@gmail.com | LinkedIn: linkedin.com/in/juan-gurdian | GitHub: github.com/juangurdian | Location: Tampa, FL",
+    "resume": "Download available at the Resume link. Open to Tampa hybrid/onsite and US remote AI engineering roles.",
+    "help": "Available commands: whoami, experience, projects, contact, resume, skills, linky, core, gynka, ask <question>"
+  }
+}
