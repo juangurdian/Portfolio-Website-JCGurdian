@@ -132,9 +132,9 @@
       },
       {
         "name": "Bug Butler",
-        "description": "Slack + FastAPI bot that turns Slack bug reports into structured GitHub Issues. NOT a VS Code extension.",
+        "description": "Slack + FastAPI + LiteLLM bot that turns Slack bug reports into structured GitHub Issues.",
         "github": "https://github.com/juangurdian/bug-butler",
-        "tech": ["Python", "FastAPI", "Slack API", "GitHub API"]
+        "tech": ["Python", "FastAPI", "LiteLLM", "Slack API", "GitHub API"]
       }
     ]
   },
@@ -150,7 +150,7 @@
     "experience": "Current: AI Engineer at yorCMO (Sep 2025-present), Co-Founder & CTO at Gynka. Previous: ML Intern at AtomChat (Jul-Oct 2024), Digital Transformation Intern at Cargill (Jun-Aug 2023). B.S. Computer Information Technology from TCU (May 2025).",
     "projects": "Production work: Linky (autonomous LinkedIn outreach, ~90% draft approval), CORE Growth Platform (4/11 agents, 24 client orgs), PanelCast (meeting-to-content), MCP server for Claude integration, Gynka (AI fitness coach). Open source: Wingman, Vault-AI, Bug Butler.",
     "contact": "Email: juangurdian2003@gmail.com | LinkedIn: linkedin.com/in/juan-gurdian | GitHub: github.com/juangurdian | Location: Tampa, FL",
-    "resume": "Download available at the Resume link. Open to Tampa hybrid/onsite and US remote AI engineering roles.",
+    "resume": "Resume available at /resume.pdf (if link does not work, the file is being updated). Open to Tampa hybrid/onsite and US remote AI engineering roles. Contact: juangurdian2003@gmail.com",
     "help": "Available commands: whoami, experience, projects, contact, resume, skills, linky, core, gynka, ask <question>"
   }
 }

@@ -29,8 +29,8 @@ const ossProjects: OSSProject[] = [
   {
     title: "Bug Butler",
     description: "Slack to GitHub Issues bot",
-    details: "Slack + FastAPI bot that turns Slack bug reports into structured GitHub Issues. Parses bug reports and creates well-formatted issues automatically.",
-    tech: ["Python", "FastAPI", "Slack API", "GitHub API"],
+    details: "Slack + FastAPI + LiteLLM bot that turns Slack bug reports into structured GitHub Issues. Parses bug reports and creates well-formatted issues automatically.",
+    tech: ["Python", "FastAPI", "LiteLLM", "Slack API", "GitHub API"],
     github: "https://github.com/juangurdian/bug-butler",
   },
 ];

@@ -22,14 +22,18 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.jcgurdian.io"),
   title: "Juan Gurdian | AI Engineer",
   description:
     "AI Engineer at yorCMO, Co-Founder & CTO at Gynka. Building production LLM agents, RAG systems, and MCP integrations. Open to Tampa hybrid/onsite and US remote roles.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Juan Gurdian | AI Engineer",
     description:
       "Production AI systems for real clients. Linky, CORE Growth Platform, MCP server, and more. Tampa, FL.",
-    url: "https://jcgurdian.io",
+    url: "https://www.jcgurdian.io",
     siteName: "Juan Gurdian",
     type: "website",
     locale: "en_US",
@@ -56,10 +60,10 @@ export default function RootLayout({
     "@type": "Person",
     name: "Juan Gurdian",
     jobTitle: "AI Engineer",
-    url: "https://jcgurdian.io",
+    url: "https://www.jcgurdian.io",
     sameAs: [
       "https://github.com/juangurdian",
-      "https://linkedin.com/in/juan-gurdian",
+      "https://www.linkedin.com/in/juan-gurdian",
     ],
     worksFor: [
       {
