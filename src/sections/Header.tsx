@@ -40,7 +40,7 @@ export const Header = () => {
             <FaGithub className="text-white text-xl w-full h-full" />
           </a>
           <a 
-            href="https://linkedin.com/in/juan-gurdian" 
+            href="https://www.linkedin.com/in/juan-gurdian" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-white/20 transition-colors p-1"

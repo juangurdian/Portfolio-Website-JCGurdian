@@ -1,157 +1,118 @@
 import Image from "next/image";
-import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
 import { ReactNode } from "react";
 import CheckCircle from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
 import grainImage from '@/assets/images/grain.jpg'
-import ArrowDown from '@/assets/icons/arrow-down.svg'
-import socialhour from "@/assets/images/socialhour.png"
-import orion from "@/assets/images/orion.png"
-import frogcrew from "@/assets/images/frogcrew.jpeg"
-import motivateme from "@/assets/images/motivatemePoster.png"
-import bole from "@/assets/images/boleto.png"
-import jasper from "@/assets/images/jasper.png"
 
 const portfolioProjects = [
   {
-    company: "yorCMO.ai",
+    company: "yorCMO",
     year: "2025",
-    title: "PanelCast — Panel-to-Content SaaS Platform",
+    title: "Linky: Autonomous LinkedIn Outreach Platform",
     results: [
-      { title: "Built full production SaaS solo — from architecture to deployment, transforming expert panel discussions into multi-format content for marketing teams." },
-      { title: "Developed AI pipeline with transcription, speaker diarization, and automated content generation using Next.js, TypeScript, Python, FastAPI, OpenAI, and Supabase." },
-      { title: "Serves real marketing teams at yorCMO.ai for panel-to-content workflows, deployed on Vercel with full CI/CD pipeline." },
-    ],
-    link: "https://panelcast.yorcmo.ai",
-    image: orion,
-  },
-  {
-    company: "yorCMO.ai",
-    year: "2025",
-    title: "Beast AI — Intelligent Content Generation Platform",
-    results: [
-      { title: "Built intelligent content generation platform for marketing teams using fine-tuned LLMs to produce brand-consistent copy across channels." },
-      { title: "Multi-channel content generation including blog posts, social media, email campaigns, and ad copy at scale with Python, LangChain, OpenAI, and FastAPI." },
-      { title: "Integrated into yorCMO's content operations workflow, enabling efficient brand-voice-consistent marketing content production." },
+      { title: "Platform lead for autonomous LinkedIn outreach on LLM agents. Per client it sources about 6,000 companies and 12,000 prospects, researches each prospect, and drafts outreach in the user's voice." },
+      { title: "About 90% of drafts are approved without edits, with human approval before send. Directed one engineer on the project." },
+      { title: "Built on LangGraph, Unipile API, Supabase, and Modal with full observability and per-agent cost controls." },
     ],
     link: "",
-    image: jasper,
+    image: null,
+  },
+  {
+    company: "yorCMO",
+    year: "2025",
+    title: "CORE Growth Platform + MCP Server",
+    results: [
+      { title: "Built 4 of 11 production LLM agents serving 24 client organizations across 25+ integrations (LinkedIn/Unipile, WordPress, HubSpot, Google Analytics and Ads, Mailchimp, Klaviyo, Apify, Notion, Shopify, Microsoft Graph)." },
+      { title: "Built and maintain an MCP server that exposes platform agents as tools inside Claude, plus the shared orchestration and tool-calling layer." },
+      { title: "Own guardrails (PII redaction, role-aware prompts), evals (prompt regression, A/B), RBAC and audit logs, and backend services on Modal, Vercel, Supabase, and AWS with Docker, GitHub Actions, observability." },
+    ],
+    link: "",
+    image: null,
+  },
+  {
+    company: "yorCMO",
+    year: "2025",
+    title: "PanelCast: Meeting-to-Content Pipeline",
+    results: [
+      { title: "Turns a recorded meeting into an on-brand blog post, per-attendee LinkedIn posts, and short-form video clips." },
+      { title: "AI pipeline with transcription, speaker diarization, and automated content generation using Next.js, TypeScript, Python, FastAPI, and OpenAI." },
+      { title: "Live production tool used by yorCMO marketing teams, deployed on Vercel with full CI/CD pipeline." },
+    ],
+    link: "https://panelcast.yorcmo.ai",
+    image: null,
+  },
+  {
+    company: "Gynka",
+    year: "2025",
+    title: "Gynka: AI Fitness Coaching App",
+    results: [
+      { title: "Sole technical owner of an AI fitness coaching app in closed beta. Architected and built the multi-agent AI coach engine on AWS (FastAPI, Pydantic AI, Supabase, ARQ/Redis, RevenueCat)." },
+      { title: "Built the full iOS and Android app in React Native, distributed via TestFlight to advisors and early users." },
+      { title: "The coach ingests biomarker data from connected wearables and adapts each workout toward the user's goal. Own product decisions end to end." },
+    ],
+    link: "https://gynka.app",
+    image: null,
   },
   {
     company: "Open Source",
     year: "2025",
-    title: "Bug Butler — AI Debugging Assistant for VS Code",
+    title: "Wingman: MCP Bridge for AI Coding Assistants",
     results: [
-      { title: "Created open-source VS Code extension that uses AI to automatically detect, explain, and fix bugs in your code." },
-      { title: "Built context-aware debugging assistant that understands your codebase and suggests fixes with clear explanations." },
-      { title: "Developed with TypeScript, VS Code API, OpenAI, LangChain, and Node.js for automated fix suggestions." },
+      { title: "TypeScript MCP bridge that lets an assistant monitor and drive Claude Code / Codex sessions." },
+      { title: "Enables AI assistants to observe and interact with coding sessions programmatically." },
+      { title: "Open source project available on GitHub with full documentation." },
+    ],
+    link: "https://github.com/juangurdian/wingman",
+    image: null,
+  },
+  {
+    company: "Open Source",
+    year: "2025",
+    title: "Vault-AI: Local-First AI Platform",
+    results: [
+      { title: "Local-first AI platform with an LLM smart router that picks among local models by task type in under 500ms." },
+      { title: "ChromaDB RAG, FastAPI + Next.js frontend, Ollama for local inference, SearXNG for search, ComfyUI integration." },
+      { title: "One-command Docker Compose deployment for fully self-hosted AI capabilities." },
+    ],
+    link: "https://github.com/juangurdian/Vault-AI",
+    image: null,
+  },
+  {
+    company: "Open Source",
+    year: "2025",
+    title: "Bug Butler: Slack Bot for GitHub Issues",
+    results: [
+      { title: "Slack bot that turns bug reports into structured GitHub Issues automatically." },
+      { title: "Built with Python, FastAPI, and LiteLLM for intelligent parsing and formatting of bug reports." },
+      { title: "CI integration for automated issue creation and team workflow optimization." },
     ],
     link: "https://github.com/juangurdian/bug-butler",
-    image: orion,
+    image: null,
   },
-  {
-    company: "Bole.to",
-    year: "2025-Present",
-    title: "Bole.to - Social Ticketing & Events Operation Platform",
-    results: [
-      { title: "Co-founded with a friend; I serve as Co-CEO & CTO. Designing and building an all-in-one platform that combines ticketing and offline access control with a social layer to drive pre/post-show engagement." },
-      { title: "Led the web + mobile architecture (Next.js 14, React Native (Expo), TypeScript), integrating Hi.Events for ticketing, QR check-in that works with no signal (local validation, multi-gate sync, duplicate detection), and a wallet for attendees." },
-      { title: "Built the social stack (Supabase Realtime/Storage/Edge Functions): event feed with announcements & live polls and a D+1 camera that reveals photos the next day (moderation, scheduled jobs, push notifications). Set up Vercel/EAS CI/CD, Sentry + analytics, and payments (Stripe / dLocal / PayPal) for NIO/USD." },
-    ],
-    link: "https://www.mybole.to/",
-    image: bole,
-  },
-  {
-    company: "O.R.I.O.N",
-    year: "2025",
-    title: "O.R.I.O.N Customer Assistant - AI Platform for small businesses",
-    results: [
-      { title: "Developed a self-hosted AI assistant designed for small businesses (food trucks, shops, salons) to automate customer interactions such as FAQs, menu inquiries, and simple order taking." },
-      { title: "Implemented a retrieval-augmented generation (RAG) system using FAISS and sentence-transformers for accurate, context-aware responses from uploaded FAQs, menus, and documents." },
-      { title: "Built multi-channel support including a web chat widget, WhatsApp (Twilio/Cloud API), and Telegram, enabling businesses to connect with customers where they already are." },
-    ],
-    link: "https://github.com/juangurdian/CustomerService-AI-Automation",
-    image: orion,
-  },
-  {
-    company: "TCU",
-    year: "2025",
-    title: "FrogCrew — Sports Broadcasting Management Platform",
-    results: [
-      { title: "Developed a full-stack platform using Vue 3 and TailwindCSS for managing TCU's Sports Broadcasting crews, events, and scheduling, enabling seamless coordination of broadcast operations." },
-      { title: "Built features for admins to assign shifts, track crew member availability, and automate communications, while providing crew members with an intuitive interface to view upcoming events and manage profiles." },
-      { title: "Integrated with Spring Boot backend and PostgreSQL database with role-based security, designed with scalability in mind to accommodate growing broadcast operations." },
-    ],
-    link: "https://github.com/juangurdian/FrogCrew.v2",
-    image: frogcrew,
-  },{
-    company: "TCU",
-    year: "2025",
-    title: "MotivateMe  – Health & Wellness Mobile App",
-    results: [
-      { title: "Collaborated with UNT Health Science Center to design and build a cross-platform mobile app using React Native, Spring Boot, and PostgreSQL." },
-      { title: "Developed key features including SMART goal setting, daily journaling, biometrics tracking, chronic condition logging, motivational notifications, and a weekly calendar overview." },
-      { title: "Focused on accessibility and usability to support underserved communities in forming healthy habits and improving long-term wellness outcomes." },
-    ],
-    link: "https://seniordesign.cs.tcu.edu/",
-    image: motivateme,
-  },
-  {
-    company: "Jasper AI",
-    year: "2025",
-    title: "Jasper AI — Conversation-First Personal Productivity Assistant",
-    results: [
-      { title: "Conversation-first web assistant that turns casual chat/voice into actions across Tasks/Calendar/Email/Finance; a custom GPT-4.1 Nano intent engine parses multi-intent requests and outputs strict JSON for deterministic function routing with an Other/Clarify fallback." },
-      { title: "Modules: Tasks (NL add/edit/complete, priorities), Calendar (2-way Google sync, reschedule & conflict-fix), Email (Gmail summaries + tone-matched drafts), Finance (voice expense logging, reports); live: Gmail & Google Calendar · next: Outlook Mail/Calendar, Slack, Notion, Discord, Google Drive." },
-      { title: "Platforms & trust: runs in any browser + PWA; native iOS/Android and macOS/Windows wrappers planned; OAuth2 least-privilege, encryption, data isolation, no training on personal data; instrumentation for intent accuracy, action success, and latency." },
-    ],
-    link: "",
-    image: jasper,
-  },
-  {
-    company: "Social Hour Studio",
-    year: "2024",
-    title: "Marketing Agency Website",
-    results: [
-      { title: "Collaborated closely with the client to design and develop a modern, responsive website that effectively showcases their marketing services and portfolio, ensuring their brand identity was perfectly represented." },
-      { title: "Built a custom website using HTML, CSS, and JavaScript, implementing smooth animations and transitions to create an engaging user experience that aligns with the agency's creative vision." },
-      { title: "Provided comprehensive web hosting and maintenance services, ensuring optimal performance, security updates, and continuous improvements based on client feedback and analytics." },
-    ],
-    link: "https://socialhourstudio.co",
-    image: socialhour,
-  },
-  
 ];
 
 export const ProjectsSection = () => {
-  function result(value: { title: string; }, index: number, array: { title: string; }[]): ReactNode {
-    throw new Error("Function not implemented.");
-  }
-
   return <section id="projects" className="pb-16 lg:py-24">
     <div className="container text-white">
       <div className="flex justify-center">
-        <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">Real-world Results</p>
+        <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">Production Systems</p>
       </div>
       <h2 className="font-serif text-3xl md:text-5xl text-center mt-6">Featured Projects</h2>
-      <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">Projects</p>
+      <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">Real tools serving real clients and users.</p>
       <div className="mt-10 md:mt-20 flex flex-col gap-20">
         {portfolioProjects.map((project, projectIndex) => (
           <div key={project.title} className="bg-gray-800 rounded-3xl relative z-0
            overflow-hidden after:-z-10 after:content-[''] after:absolute 
            after:inset-0 after:outline-2 after:outline after:-outline-offset-2 
            after:rounded-3xl after:outline-white/20 px-8 pt-8 md:pt-12 md:px-10 after:pointer-events-none lg:pt-16 lg:px-20 sticky" style={{
-            top: `calc(${projectIndex * 100}px + 50px)`,
+            top: `calc(${projectIndex * 40}px + 50px)`,
            }}>
             <div className="absolute inset-0 -z-10 opacity-5" style={{
               backgroundImage: `url(${grainImage.src})`,
             }}>
 
             </div>
-            <div className="lg:grid lg:grid-cols-2 lg:gap-16">
-              <div className="lg:pb-16">
+            <div className="lg:pb-16">
               <div className="bg-gradient-to-r from-emerald-300 to-sky-400 
               inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text">
 
@@ -165,24 +126,25 @@ export const ProjectsSection = () => {
             <ul className="flex flex-col gap-4 mt-4 md:mt-5">
             {project.results.map((result, index) => (
               <li key={index} className="flex gap-2 text-sm text-white/50 md:text-base">
-                <CheckCircle className="size-5 md:size-6" />
+                <CheckCircle className="size-5 md:size-6 flex-shrink-0" />
                 <span>{result.title}</span>
               </li>
             ))}
             </ul>
-            <a href={project.link}>
-            <button className="bg-white text-gray-950 h-12 
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noopener noreferrer">
+                <button className="bg-white text-gray-950 h-12 
                               w-full rounded-xl font-semibold inline-flex items-center 
-                              justify-center gap-2 mt-8 md:w-auto px-6">
-                <span>Visit Repository</span>
-                <ArrowUpRightIcon classNAme="size-4"/>
-              </button>
-            </a>
+                              justify-center gap-2 mt-8 mb-8 md:w-auto px-6">
+                    <span>View Project</span>
+                    <ArrowUpRightIcon className="size-4"/>
+                </button>
+              </a>
+            )}
+            {!project.link && (
+              <div className="mt-8 mb-8 text-sm text-white/40 italic">Private project</div>
+            )}
             </div>
-            <div className="relative">
-            <Image src={project.image} alt={project.title} className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none" />
-          </div>
-          </div>
           </div>
         ))}
       </div>

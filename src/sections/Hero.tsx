@@ -29,12 +29,12 @@ export const HeroSection = () => {
           <div className= "bg-green-500 size-2.5 rounded-full relative">
             <div className="bg-green-500  absolute inset-0 rounded-full animate-ping-large"></div>
           </div>
-          <div className="text-sm font-medium">Available for new project</div>
+          <div className="text-sm font-medium">Open to Tampa hybrid/onsite and US remote roles</div>
         </div>
         </div>
-        <div className=" max-w-lg mx-auto">
-        <h1 className="font-serif text-white text-3xl md:text-5xl text-center mt-8 tracking-wide">Hello! Welcome to my portfolio</h1>
-        <p className="mt-4 text-center text-white/60 md:text-lg"> Full Stack Developer</p>
+        <div className=" max-w-2xl mx-auto">
+        <h1 className="font-serif text-white text-3xl md:text-5xl text-center mt-8 tracking-wide">AI Engineer @ yorCMO | Co-Founder & CTO, Gynka</h1>
+        <p className="mt-4 text-center text-white/60 md:text-lg">AI Engineer shipping production LLM and agent systems end to end.</p>
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
           <button className="inline-flex items-center text-white gap-2 border border-white/15 px-6 h-12 rounded-xl">

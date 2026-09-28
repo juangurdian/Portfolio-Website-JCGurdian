@@ -2,21 +2,13 @@ import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg"
 
 const footerLinks =[
   {
-    title: 'Linkedin',
+    title: 'LinkedIn',
     href: 'https://www.linkedin.com/in/juan-gurdian',
   },
   {
-    title: 'Github',
+    title: 'GitHub',
     href: 'https://github.com/juangurdian',
   },
-  {
-    title: 'Instagram',
-    href: 'https://www.instagram.com/jcgurdian03/',
-  },
-  {
-    title: 'X',
-    href: '',
-  }
 ]
 
 export const Footer = () => {

@@ -10,7 +10,7 @@ export const ContactSection = () => {
         <SectionHeader  
           title="Get in Touch"
           eyebrow="Contact"
-          description="Let&apos;s discuss your next project or just say hello!"
+          description="Open to Tampa hybrid/onsite and US remote AI engineering roles."
         />
 
         <div className="mt-12 lg:mt-24 grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -83,7 +83,7 @@ export const ContactSection = () => {
                   <div>
                     <p className="text-white/60">Social Media</p>
                     <div className="flex gap-4 mt-1">
-                      <a href="https://linkedin.com/in/juan-gurdian" target="_blank" rel="noopener noreferrer" className="text-white hover:text-emerald-300 transition-colors">LinkedIn</a>
+                      <a href="https://www.linkedin.com/in/juan-gurdian" target="_blank" rel="noopener noreferrer" className="text-white hover:text-emerald-300 transition-colors">LinkedIn</a>
                       <a href="https://github.com/juangurdian" target="_blank" rel="noopener noreferrer" className="text-white hover:text-emerald-300 transition-colors">GitHub</a>
                     </div>
                   </div>
@@ -100,9 +100,9 @@ export const ContactSection = () => {
                 <div className="size-3 bg-green-500 rounded-full relative">
                   <div className="absolute inset-0 bg-green-500 rounded-full animate-ping"></div>
                 </div>
-                <p className="text-white">Available for new projects</p>
+                <p className="text-white">Open to opportunities</p>
               </div>
-              <p className="text-white/60 mt-4">I&apos;m currently open to new opportunities and collaborations. Feel free to reach out!</p>
+              <p className="text-white/60 mt-4">Based in Tampa, FL. Open to Tampa hybrid/onsite and US remote AI engineering roles.</p>
             </Card>
           </div>
         </div>

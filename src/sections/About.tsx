@@ -2,7 +2,6 @@
 import { SectionHeader } from "@/components/Sectionheader";
 import { Card } from "@/components/Card";
 import StarIcon from "@/assets/icons/star.svg";
-import bookImage from "@/assets/images/book-cover.png";
 import Image from "next/image";
 import JavascriptIcon from '@/assets/icons/square-js.svg';
 import Html5Icon from '@/assets/icons/html5.svg';
@@ -155,7 +154,7 @@ export const AboutSection = () => {
         <SectionHeader
           title="About Me"
           eyebrow="Introduction"
-          description="Get to know me better"
+          description="Based in Tampa, FL. TCU B.S. Computer Information Technology, May 2025."
         />
 
         <div className="mt-12 lg:mt-24 space-y-8">
@@ -167,13 +166,13 @@ export const AboutSection = () => {
               <div className="pl-1 -mt-4">
                 <CardHeader 
                   title="About Me" 
-                  description="Learn more about my journey and passion for technology"
+                  description="AI Engineer based in Tampa, FL"
                   className="mb-0"
                 />
               </div>
               <div>
                 <p className="text-white/60 leading-relaxed">
-                  I&apos;m Juan Carlos Gurdian, a Nicaraguan developer and senior at Texas Christian University, majoring in Computer Information Technology. I&apos;m passionate about building real-world AI tools and started my coding journey creating small automations—now I develop full-stack apps, voice assistants, and scalable AI systems.
+                  I build and own production LLM and agent systems for real clients, not demos. At yorCMO I lead and ship tools fractional CMOs and professional firms use every day, including an autonomous outreach platform and 4 of 11 production agents serving 24 client organizations. As Co-Founder and CTO of Gynka, I am the sole technical owner of an AI fitness coaching app in closed beta. I use Claude Code and Codex to move faster, and I still own design, correctness, evals, and what reaches production.
                 </p>
               </div>
             </Card>
@@ -218,11 +217,26 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-            <Card className="h-[320px] md:col-span-2 lg:col-span-1">
-              < CardHeader title="My Reads" description="Explore the books shaping my perspective."/>
-              <div className="w-40 mx-auto mt-2 md:mt-0">
-                <Image src={bookImage} alt="Book Cover" />
-              </div>
+            <Card className="h-[320px] md:col-span-2 lg:col-span-1 p-6">
+              <CardHeader title="Education & Certs" description="Credentials and training"/>
+              <ul className="space-y-3 text-sm text-white/60 mt-4">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-300 mt-0.5">&#9656;</span>
+                  <span>Texas Christian University, B.S. Computer Information Technology, May 2025</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-300 mt-0.5">&#9656;</span>
+                  <span>Claude Code Certified (Anthropic Partner)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-300 mt-0.5">&#9656;</span>
+                  <span>AWS Certified Cloud Practitioner</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-300 mt-0.5">&#9656;</span>
+                  <span>Full Stack Web Development with MERN Stack and GenAI</span>
+                </li>
+              </ul>
             </Card>
             <Card className="h-[320px] md:col-span-3 lg:col-span-2">
               <CardHeader title="My Toolbox" 
