@@ -22,6 +22,49 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "JC Gurdian",
+  url: "https://www.jcgurdian.io",
+  jobTitle: "AI Engineer",
+  worksFor: [
+    {
+      "@type": "Organization",
+      name: "yorCMO",
+      url: "https://yorcmo.ai",
+    },
+    {
+      "@type": "Organization",
+      name: "Gynka",
+      url: "https://gynka.app",
+    },
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/juan-gurdian",
+    "https://github.com/juangurdian",
+    "https://github.com/juangurdian/wingman",
+    "https://github.com/juangurdian/Vault-AI",
+    "https://github.com/juangurdian/bug-butler",
+    "https://github.com/juangurdian/Portfolio-Website-JCGurdian",
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Texas Christian University",
+  },
+  knowsAbout: [
+    "LLMs",
+    "AI Agents",
+    "RAG",
+    "MCP",
+    "Python",
+    "TypeScript",
+    "FastAPI",
+    "React",
+    "Next.js",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +72,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={twMerge(inter.variable, calistoga.variable, "overflow-x-hidden")}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className="bg-gray-900 text-white antialiased font-sans overflow-x-hidden"
       >
