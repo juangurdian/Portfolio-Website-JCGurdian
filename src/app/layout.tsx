@@ -1,38 +1,48 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Source_Serif_4, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 
-const inter = Inter({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
-  title: "JC Gurdian — AI Engineer",
+  metadataBase: new URL("https://www.jcgurdian.io"),
+  title: "Juan Gurdian | AI Engineer",
   description:
-    "Juan Carlos Gurdian — AI Engineer building production SaaS, open-source tools, and bringing AI to Latin American businesses. Based in Nicaragua.",
+    "AI Engineer at yorCMO, Co-Founder & CTO at Gynka. Building production LLM agents, RAG systems, and MCP integrations. Open to Tampa hybrid/onsite and US remote roles.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "JC Gurdian — AI Engineer",
+    title: "Juan Gurdian | AI Engineer",
     description:
-      "AI Engineer building production SaaS, open-source tools, and bringing AI to Latin America.",
-    url: "https://jcgurdian.com",
-    siteName: "JC Gurdian",
+      "Production AI systems for real clients. Linky, CORE Growth Platform, MCP server, and more. Tampa, FL.",
+    url: "https://www.jcgurdian.io",
+    siteName: "Juan Gurdian",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "JC Gurdian — AI Engineer",
+    title: "Juan Gurdian | AI Engineer",
     description:
-      "AI Engineer building production SaaS, open-source tools, and bringing AI to Latin America.",
+      "Production AI systems for real clients. Tampa hybrid/onsite and US remote.",
   },
   robots: {
     index: true,
@@ -48,23 +58,33 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Juan Carlos Gurdian",
+    name: "Juan Gurdian",
     jobTitle: "AI Engineer",
-    url: "https://jcgurdian.com",
+    url: "https://www.jcgurdian.io",
     sameAs: [
       "https://github.com/juangurdian",
-      "https://linkedin.com/in/juan-gurdian",
-      "https://www.instagram.com/jcgurdian03/",
+      "https://www.linkedin.com/in/juan-gurdian",
     ],
-    worksFor: {
-      "@type": "Organization",
-      name: "yorCMO.ai",
-    },
+    worksFor: [
+      {
+        "@type": "Organization",
+        name: "yorCMO",
+      },
+      {
+        "@type": "Organization",
+        name: "Gynka",
+      },
+    ],
     alumniOf: {
       "@type": "CollegeOrUniversity",
       name: "Texas Christian University",
     },
-    nationality: "Nicaraguan",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tampa",
+      addressRegion: "FL",
+      addressCountry: "US",
+    },
   };
 
   return (
@@ -77,9 +97,10 @@ export default function RootLayout({
       </head>
       <body
         className={twMerge(
-          inter.variable,
-          jetbrainsMono.variable,
-          "bg-neural-bg text-white antialiased font-sans overflow-x-hidden"
+          sourceSerif.variable,
+          dmSans.variable,
+          ibmPlexMono.variable,
+          "bg-stone-950 text-stone-100 antialiased font-sans overflow-x-hidden"
         )}
       >
         <div className="min-h-screen w-full overflow-x-hidden">{children}</div>

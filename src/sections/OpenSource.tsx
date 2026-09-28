@@ -6,28 +6,32 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 interface OSSProject {
   title: string;
   description: string;
-  highlight: string;
+  details: string;
   tech: string[];
   github: string;
-  link?: string;
 }
 
 const ossProjects: OSSProject[] = [
   {
-    title: "Bug Butler",
-    description:
-      "Open-source VS Code extension that uses AI to automatically detect, explain, and fix bugs in your code. Context-aware debugging assistant that understands your codebase.",
-    highlight: "AI-powered debugging for VS Code",
-    tech: ["TypeScript", "VS Code API", "OpenAI", "LangChain"],
-    github: "https://github.com/juangurdian/bug-butler",
+    title: "Wingman",
+    description: "TypeScript MCP bridge for AI coding assistants",
+    details: "Lets Grok/Cursor drive local Codex and Claude Code sessions. Bridges different AI coding tools through the MCP protocol.",
+    tech: ["TypeScript", "MCP", "Codex", "Claude Code"],
+    github: "https://github.com/juangurdian/wingman",
   },
   {
-    title: "Everything Claude Code",
-    description:
-      "Comprehensive configuration and skill system for Claude Code — Anthropic's AI coding assistant. Agents, skills, hooks, and workflows that supercharge AI-assisted development.",
-    highlight: "Anthropic Hackathon Winner",
-    tech: ["TypeScript", "Claude Code", "MCP", "Agents"],
-    github: "https://github.com/juangurdian/everything-claude-code",
+    title: "Vault-AI",
+    description: "Local-first AI with RAG",
+    details: "Privacy-focused AI assistant with Retrieval-Augmented Generation. Runs locally without sending data to external servers.",
+    tech: ["Python", "RAG", "Local LLMs", "Vector DB"],
+    github: "https://github.com/juangurdian/Vault-AI",
+  },
+  {
+    title: "Bug Butler",
+    description: "Slack to GitHub Issues bot",
+    details: "Slack + FastAPI + LiteLLM bot that turns Slack bug reports into structured GitHub Issues. Parses bug reports and creates well-formatted issues automatically.",
+    tech: ["Python", "FastAPI", "LiteLLM", "Slack API", "GitHub API"],
+    github: "https://github.com/juangurdian/bug-butler",
   },
 ];
 
@@ -35,85 +39,68 @@ export const OpenSourceSection = () => {
   return (
     <section id="opensource" className="py-20 lg:py-28">
       <div className="container">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-12 lg:mb-16"
         >
-          <span className="font-mono text-xs text-neural-primary tracking-widest uppercase">
-            Community
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-white mt-3">
-            Open Source
-          </h2>
-          <p className="text-white/40 mt-3 max-w-lg">
-            Tools I build in the open for the developer community.
+          <span className="section-header">Community</span>
+          <h2 className="section-title">Open Source</h2>
+          <p className="text-stone-400 mt-4 max-w-lg">
+            Tools I build in the open. Check each repo&apos;s README for full details.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Projects grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {ossProjects.map((project, i) => (
-            <motion.div
+            <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card p-6 md:p-8 group hover:border-neural-primary/30 transition-all duration-300"
+              className="card p-6 card-hover group"
             >
-              {/* Highlight badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neural-primary/10 border border-neural-primary/20 mb-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-neural-primary" />
-                <span className="text-[10px] font-mono text-neural-primary tracking-wider uppercase">
-                  {project.highlight}
-                </span>
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-surface-elevated border border-surface-border flex items-center justify-center">
+                  <FaGithub className="text-stone-400 group-hover:text-accent transition-colors" />
+                </div>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-stone-500 hover:text-accent transition-colors"
+                  aria-label={`View ${project.title} on GitHub`}
+                >
+                  <FaExternalLinkAlt className="w-4 h-4" />
+                </a>
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neural-primary transition-colors">
+              <h3 className="text-lg font-serif font-semibold text-stone-100 mb-1 group-hover:text-accent transition-colors">
                 {project.title}
               </h3>
-
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
-                {project.description}
+              
+              <p className="text-sm text-accent mb-3">{project.description}</p>
+              
+              <p className="text-sm text-stone-400 leading-relaxed mb-4">
+                {project.details}
               </p>
 
               {/* Tech */}
-              <div className="flex flex-wrap gap-2 mb-5">
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-surface-border">
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="px-2 py-0.5 text-[10px] font-mono bg-white/5 border border-white/8 rounded text-white/50"
+                    className="px-2 py-0.5 text-xs font-mono bg-surface-elevated border border-surface-border rounded text-stone-500"
                   >
                     {t}
                   </span>
                 ))}
               </div>
-
-              {/* Links */}
-              <div className="flex gap-3">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-white/60 text-sm font-semibold hover:border-neural-primary/30 hover:text-neural-primary transition-colors"
-                >
-                  <FaGithub className="text-sm" />
-                  View on GitHub
-                </a>
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-neural-primary/10 border border-neural-primary/20 text-neural-primary text-sm font-semibold hover:bg-neural-primary/20 transition-colors"
-                  >
-                    <FaExternalLinkAlt className="text-xs" />
-                    Live
-                  </a>
-                )}
-              </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
@@ -128,13 +115,11 @@ export const OpenSourceSection = () => {
             href="https://github.com/juangurdian"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-neural-primary transition-colors font-mono"
+            className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-accent transition-colors"
           >
             <FaGithub />
             View all repositories on GitHub
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
+            <FaExternalLinkAlt className="w-3 h-3" />
           </a>
         </motion.div>
       </div>
