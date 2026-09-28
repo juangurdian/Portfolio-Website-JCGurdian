@@ -38,7 +38,7 @@ const portfolioProjects = [
       { title: "AI pipeline with transcription, speaker diarization, and automated content generation using Next.js, TypeScript, Python, FastAPI, and OpenAI." },
       { title: "Live production tool used by yorCMO marketing teams, deployed on Vercel with full CI/CD pipeline." },
     ],
-    link: "https://panelcast.yorcmo.ai",
+    link: "",
     image: null,
   },
   {
