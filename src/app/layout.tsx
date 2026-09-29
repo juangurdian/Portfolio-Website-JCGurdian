@@ -2,32 +2,50 @@ import type { Metadata } from "next";
 import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
+import { DISPLAY_NAME, FULL_NAME, ALTERNATE_NAMES, SITE_URL, EMAIL, SOCIAL_LINKS } from "@/data/site";
 
 const inter = Inter({ subsets: ['latin'], variable: "--font-sans", weight: "400" });
 const calistoga = Calistoga({ subsets: ['latin'], variable: "--font-serif", weight: "400" });
 
 export const metadata: Metadata = {
-  title: "JC Gurdian | AI Engineer | Production Agents, RAG, MCP",
-  description: "AI Engineer shipping production LLM and agent systems end to end. Building tools fractional CMOs and professional firms use every day at yorCMO. Co-Founder and CTO of Gynka.",
-  metadataBase: new URL("https://www.jcgurdian.io"),
+  title: `${DISPLAY_NAME} | AI Engineer in Tampa, FL | LLM Agents, RAG, MCP`,
+  description: "AI engineer in Tampa, FL. I build and run production LLM agents, RAG, and MCP tools at yorCMO and am cofounder and CTO of Gynka.",
+  keywords: "Juan Gurdian, JC Gurdian, AI Engineer, Tampa AI Engineer, LLM agents, agentic AI, RAG, MCP server, Claude, FastAPI, Next.js, React Native, full-stack AI engineer",
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: "https://www.jcgurdian.io/",
+    canonical: `${SITE_URL}/`,
   },
   openGraph: {
-    title: "JC Gurdian | AI Engineer | Production Agents, RAG, MCP",
-    description: "AI Engineer shipping production LLM and agent systems end to end. Building tools fractional CMOs and professional firms use every day at yorCMO. Co-Founder and CTO of Gynka.",
-    url: "https://www.jcgurdian.io/",
-    siteName: "JC Gurdian",
-    type: "website",
+    title: `${DISPLAY_NAME} | AI Engineer in Tampa, FL`,
+    description: "Production LLM agents, RAG, and MCP tools for client teams at yorCMO. Cofounder and CTO of Gynka.",
+    url: `${SITE_URL}/`,
+    siteName: DISPLAY_NAME,
+    type: "profile",
+  },
+  twitter: {
+    card: "summary",
+  },
+  other: {
+    "profile:first_name": "Juan",
+    "profile:last_name": "Gurdian",
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "JC Gurdian",
-  url: "https://www.jcgurdian.io",
+  name: FULL_NAME,
+  alternateName: ALTERNATE_NAMES,
+  url: `${SITE_URL}/`,
+  email: `mailto:${EMAIL}`,
   jobTitle: "AI Engineer",
+  description: "AI engineer building production LLM agent systems, RAG, and MCP tools.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Tampa",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
   worksFor: [
     {
       "@type": "Organization",
@@ -40,29 +58,43 @@ const jsonLd = {
       url: "https://gynka.app",
     },
   ],
-  sameAs: [
-    "https://www.linkedin.com/in/juan-gurdian",
-    "https://github.com/juangurdian",
-    "https://github.com/juangurdian/wingman",
-    "https://github.com/juangurdian/Vault-AI",
-    "https://github.com/juangurdian/bug-butler",
-    "https://github.com/juangurdian/Portfolio-Website-JCGurdian",
-  ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Texas Christian University",
+    url: "https://www.tcu.edu",
   },
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "B.S. Computer Information Technology",
+      credentialCategory: "degree",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "AWS Certified Cloud Practitioner",
+      credentialCategory: "certification",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Claude Code certification",
+      credentialCategory: "certification",
+    },
+  ],
   knowsAbout: [
-    "LLMs",
-    "AI Agents",
-    "RAG",
-    "MCP",
+    "LLM agents",
+    "Agentic AI",
+    "Retrieval-augmented generation",
+    "Model Context Protocol",
+    "LLM evaluation",
     "Python",
     "TypeScript",
     "FastAPI",
-    "React",
     "Next.js",
+    "React Native",
+    "AWS",
   ],
+  knowsLanguage: ["English", "Spanish"],
+  sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.github],
 };
 
 export default function RootLayout({

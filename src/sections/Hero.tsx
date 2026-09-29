@@ -2,8 +2,8 @@ import memojiImage from '@/assets/images/memoji-computer.png'
 import Image from 'next/image'
 import ArrowDown from '@/assets/icons/arrow-down.svg'
 import grainImage from '@/assets/images/grain.jpg'
-import StarIcon from '@/assets/icons/star.svg'
 import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg'
+import { DISPLAY_NAME } from '@/data/site'
 
 export const HeroSection = () => {
   return (
@@ -32,20 +32,21 @@ export const HeroSection = () => {
           <div className="text-sm font-medium">Open to Tampa hybrid/onsite and US remote roles</div>
         </div>
         </div>
-        <div className=" max-w-2xl mx-auto">
-        <h1 className="font-serif text-white text-3xl md:text-5xl text-center mt-8 tracking-wide">AI Engineer @ yorCMO | Co-Founder & CTO, Gynka</h1>
-        <p className="mt-4 text-center text-white/60 md:text-lg">AI Engineer shipping production LLM and agent systems end to end.</p>
+        <div className=" max-w-3xl mx-auto">
+        <h1 className="font-serif text-white text-3xl md:text-5xl text-center mt-8 tracking-wide">{DISPLAY_NAME}</h1>
+        <p className="mt-4 text-center text-white/80 md:text-lg">AI Engineer at yorCMO. Co-Founder and CTO of Gynka. Tampa, FL.</p>
+        <p className="mt-4 text-center text-white/60 md:text-lg max-w-2xl mx-auto">I design, ship, and run production LLM agent systems. At yorCMO I built 4 of 11 production agents on a platform serving 24 client organizations and led an outreach agent whose drafts are approved without edits about 90% of the time.</p>
         </div>
         <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
-          <button className="inline-flex items-center text-white gap-2 border border-white/15 px-6 h-12 rounded-xl">
-            <a href="#projects" className="font-semibold">Explore My Work</a>
+          <a href="#projects" className="inline-flex items-center text-white gap-2 border border-white/15 px-6 h-12 rounded-xl hover:bg-white/5 transition-colors">
+            <span className="font-semibold">See the Work</span>
             <ArrowDown className="size-4" />
-          </button>
+          </a>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl hover:bg-gray-100 transition-colors"
           >
-            <span className="font-semibold">Let&apos;s Connect</span>
+            <span className="font-semibold">Email Me</span>
             <ArrowUpRightIcon className="size-4" />
           </a>
         </div>

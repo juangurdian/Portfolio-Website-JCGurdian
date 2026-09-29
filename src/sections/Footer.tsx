@@ -1,23 +1,26 @@
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg"
+import { DISPLAY_NAME, SOCIAL_LINKS } from "@/data/site"
 
 const footerLinks =[
   {
     title: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/juan-gurdian',
+    href: SOCIAL_LINKS.linkedin,
   },
   {
     title: 'GitHub',
-    href: 'https://github.com/juangurdian',
+    href: SOCIAL_LINKS.github,
   },
 ]
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
   <footer className="relative">
     <div className="absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/50 [mask-image:radial-gradient(50%_50%_at_bottom__center,black,transparent)] -z-10"></div>
     <div className="container relative z-10">
       <div className="border-t border-white/15 py-6 text-sm text-white flex flex-col items-center md:flex-row md:justify-between gap-8">
-        <div className="text-white/40">&copy; 2025. All Rights Reserved.</div>
+        <div className="text-white/40">&copy; {currentYear} {DISPLAY_NAME}. All Rights Reserved.</div>
         <nav className="flex flex-col items-center gap-8 md:flex-row">
           {footerLinks.map(link => (
             <a 
