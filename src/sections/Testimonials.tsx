@@ -11,9 +11,9 @@ const experienceItems = [
     name: "AI Engineer",
     position: "yorCMO | Sep 2025 to Present | Tampa, FL (remote)",
     bullets: [
-      "Led the design and build of an autonomous LinkedIn outreach platform on LLM agents. For each client it sources about 6,000 companies and 12,000 prospects, researches each prospect, and drafts messages in the user's voice. About 90% of drafts are approved without edits, and a person approves every message before it sends. Directed one engineer.",
-      "Built 4 of 11 production LLM agents on a multi-tenant marketing platform serving 24 client organizations through 25+ integrations, including HubSpot, WordPress, Google Analytics and Ads, Shopify, Klaviyo, and Microsoft Graph.",
-      "Built and maintain an MCP server that exposes the platform's agents as tools inside Claude, plus the shared orchestration and tool-calling layer the agents run on.",
+      "Led the design and build of Linky, an autonomous LinkedIn outreach platform on LLM agents. For each client it sources about 6,000 companies and 12,000 prospects, researches each prospect, and drafts messages in the user's voice. About 90% of drafts are approved without edits, and a person approves every message before it sends. Directed one engineer.",
+      "Built 4 of 11 production LLM agents on CORE, a multi-tenant marketing platform serving 24 client organizations through 25+ integrations, including HubSpot, WordPress, Google Analytics and Ads, Shopify, Klaviyo, and Microsoft Graph.",
+      "Built and maintain the MCP server that exposes CORE's agents as tools inside Claude, plus the shared orchestration and tool-calling layer the agents run on.",
       "Own guardrails (PII redaction, role-aware prompts), evals (prompt regression, A/B tests), RBAC and audit logs, and per-agent cost and latency controls across Modal, Vercel, Supabase, and AWS.",
     ],
     avatar: memojicomputer,

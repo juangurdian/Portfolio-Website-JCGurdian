@@ -8,7 +8,7 @@ const portfolioProjects = [
   {
     company: "yorCMO",
     year: "2025",
-    title: "Autonomous LinkedIn Outreach Platform",
+    title: "Linky: Autonomous LinkedIn Outreach Platform",
     results: [
       { title: "Problem: fractional CMOs needed personalized LinkedIn outreach at a volume no one could write by hand." },
       { title: "Built: LLM agents that source about 6,000 companies and 12,000 prospects per client, research each prospect, and draft messages in the user's voice, with human approval before anything sends. I led the build and directed one engineer." },
@@ -16,20 +16,20 @@ const portfolioProjects = [
     ],
     link: "",
     image: null,
-    tag: "Private client work",
+    tag: "yorCMO",
   },
   {
     company: "yorCMO",
     year: "2025",
-    title: "Multi-tenant Marketing Agent Platform + MCP Server",
+    title: "CORE Growth Platform + MCP Server",
     results: [
       { title: "Built 4 of 11 production LLM agents serving 24 client organizations through 25+ integrations (HubSpot, WordPress, Google Analytics and Ads, Mailchimp, Klaviyo, Shopify, Notion, Microsoft Graph, and more)." },
-      { title: "Built and maintain the MCP server that exposes those agents as tools inside Claude, plus the shared orchestration and tool-calling layer." },
+      { title: "Built and maintain the MCP server that exposes CORE's agents as tools inside Claude, plus the shared orchestration and tool-calling layer." },
       { title: "Guardrails, prompt-regression and A/B evals, RBAC with audit logs, and per-agent cost and latency controls." },
     ],
     link: "",
     image: null,
-    tag: "Private client work",
+    tag: "yorCMO",
   },
   {
     company: "yorCMO",
@@ -41,7 +41,7 @@ const portfolioProjects = [
     ],
     link: "",
     image: null,
-    tag: "Private",
+    tag: "yorCMO",
   },
   {
     company: "Gynka",

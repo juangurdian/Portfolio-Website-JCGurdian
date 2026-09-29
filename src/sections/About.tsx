@@ -83,7 +83,7 @@ export const AboutSection = () => {
               </div>
               <div className="space-y-4">
                 <p className="text-white/60 leading-relaxed">
-                  I&apos;m an AI engineer in Tampa, FL. I joined yorCMO in September 2025, a few months after finishing my B.S. in Computer Information Technology at TCU, and I&apos;ve spent the year building production LLM agent systems that fractional CMOs and professional firms use every day. I led the build of an autonomous LinkedIn outreach platform, built 4 of 11 production agents on a multi-tenant platform serving 24 client organizations, and maintain the MCP server that exposes those agents as tools inside Claude.
+                  I&apos;m an AI engineer in Tampa, FL. I joined yorCMO in September 2025, a few months after finishing my B.S. in Computer Information Technology at TCU, and I&apos;ve spent the year building production LLM agent systems that fractional CMOs and professional firms use every day. I led the build of Linky, an autonomous LinkedIn outreach platform, built 4 of 11 production agents on CORE, a multi-tenant marketing platform serving 24 client organizations, and maintain the MCP server that exposes CORE&apos;s agents as tools inside Claude.
                 </p>
                 <p className="text-white/60 leading-relaxed">
                   I&apos;m also cofounder and CTO of Gynka and its only engineer: the React Native app, the multi-agent coaching backend, the database, and the AWS infrastructure.
