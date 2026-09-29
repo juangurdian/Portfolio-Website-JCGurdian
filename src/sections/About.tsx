@@ -3,147 +3,58 @@ import { SectionHeader } from "@/components/Sectionheader";
 import { Card } from "@/components/Card";
 import StarIcon from "@/assets/icons/star.svg";
 import Image from "next/image";
-import JavascriptIcon from '@/assets/icons/square-js.svg';
-import Html5Icon from '@/assets/icons/html5.svg';
-import Css3Icon from '@/assets/icons/css3.svg';
-import ReactIcon from '@/assets/icons/react.svg';
-import ChromeIcon from '@/assets/icons/chrome.svg';
-import GithubIcon from '@/assets/icons/github.svg';
-import pythonIcon from '@/assets/icons/python.svg';
-import javaIcon from '@/assets/icons/java.svg';
-import { TechIcon } from "@/components/TechIcon";
 import mapImage from "@/assets/images/map.png"
 import smileMemoji from '@/assets/images/memoji-smile.png'
 import { CardHeader } from "@/components/CardHeader"
-import { ToolboxItems } from "@/components/ToolboxItems";
 import {motion} from 'framer-motion'
 import { useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
 import grainImage from '@/assets/images/grain.jpg';
-import memojiImage from '@/assets/images/memoji-avatar-1.png';
 import jcimage from '@/assets/images/jcimage.jpg'
 
-const toolboxItemsFirstRow = [
+const skillGroups = [
   {
-    title: 'Java',
-    iconType: javaIcon,
+    category: 'AI',
+    skills: 'LLM agents, RAG, evals, guardrails, MCP, LangGraph, Pydantic AI, Anthropic and OpenAI APIs',
   },
   {
-    title: 'Python',
-    iconType: pythonIcon,
+    category: 'Backend',
+    skills: 'Python, FastAPI, TypeScript, Node.js, PostgreSQL, Supabase, Redis',
   },
   {
-    title: 'Javascript',
-    iconType: JavascriptIcon,
+    category: 'Frontend',
+    skills: 'React, Next.js, React Native',
   },
   {
-    title: 'HTML5',
-    iconType: Html5Icon,
+    category: 'Cloud',
+    skills: 'AWS, Modal, Vercel, Docker, GitHub Actions',
   },
-  {
-    title: 'CSS3',
-    iconType: Css3Icon,
-  },
-  {
-    title: 'React',
-    iconType: ReactIcon,
-  },
-  {
-    title: 'Chrome',
-    iconType: ChromeIcon,
-  },
-  {
-    title: 'Github',
-    iconType: GithubIcon,
-  }
-]
-
-const toolboxItemsSecondRow = [
-  {
-    title: 'React',
-    iconType: ReactIcon,
-  },
-  {
-    title: 'Javascript',
-    iconType: JavascriptIcon,
-  },
-  {
-    title: 'Python',
-    iconType: pythonIcon,
-  },
-  {
-    title: 'Java',
-    iconType: javaIcon,
-  },
-  {
-    title: 'Github',
-    iconType: GithubIcon,
-  },
-  {
-    title: 'Chrome',
-    iconType: ChromeIcon,
-  },
-  {
-    title: 'HTML5',
-    iconType: Html5Icon,
-  },
-  {
-    title: 'CSS3',
-    iconType: Css3Icon,
-  }
-]
+];
 
 const hobbies = [
   {
-    title: '3D-Printing',
-    emoji: '🤖',
-    left: '5%',
-    top: '5%',
-
-  },
-  {
     title: 'Motocross',
     emoji: '🏍',
-    left: '50%',
-    top: '5%',
-
+    left: '5%',
+    top: '10%',
   },
   {
     title: 'Fitness',
     emoji: '🏋🏼',
+    left: '50%',
+    top: '10%',
+  },
+  {
+    title: '3D Printing',
+    emoji: '🤖',
     left: '10%',
-    top: '35%',
-
-  },
-  {
-    title: 'Gaming',
-    emoji: '🕹',
-    left: '35%',
-    top: '40%',
-
-  },
-  {
-    title: 'Coding',
-    emoji: '💻',
-    left: '70%',
-    top: '45%',  
-
+    top: '50%',
   },
   {
     title: 'Reading',
     emoji: '📚',
-    left: '5%',
-    top: '65%',
-
+    left: '55%',
+    top: '55%',
   },
-  {
-    title: 'Web3 Development',
-    emoji: '📈',
-    left: '45%',
-    top: '70%',
-
-  },
-
 ]
 
 export const AboutSection = () => {
@@ -170,9 +81,18 @@ export const AboutSection = () => {
                   className="mb-0"
                 />
               </div>
-              <div>
+              <div className="space-y-4">
                 <p className="text-white/60 leading-relaxed">
-                  I build and own production LLM and agent systems for real clients, not demos. At yorCMO I lead and ship tools fractional CMOs and professional firms use every day, including an autonomous outreach platform and 4 of 11 production agents serving 24 client organizations. As Co-Founder and CTO of Gynka, I am the sole technical owner of an AI fitness coaching app in closed beta. I use Claude Code and Codex to move faster, and I still own design, correctness, evals, and what reaches production.
+                  I&apos;m an AI engineer in Tampa, FL. I joined yorCMO in September 2025, a few months after finishing my B.S. in Computer Information Technology at TCU, and I&apos;ve spent the year building production LLM agent systems that fractional CMOs and professional firms use every day. I led the build of an autonomous LinkedIn outreach platform, built 4 of 11 production agents on a multi-tenant platform serving 24 client organizations, and maintain the MCP server that exposes those agents as tools inside Claude.
+                </p>
+                <p className="text-white/60 leading-relaxed">
+                  I&apos;m also cofounder and CTO of Gynka and its only engineer: the React Native app, the multi-agent coaching backend, the database, and the AWS infrastructure.
+                </p>
+                <p className="text-white/60 leading-relaxed">
+                  I use Claude Code and Codex to move faster. Architecture, evals, guardrails, and what reaches production are my responsibility.
+                </p>
+                <p className="text-white/60 leading-relaxed">
+                  <span className="text-emerald-300">Languages:</span> English and Spanish
                 </p>
               </div>
             </Card>
@@ -206,7 +126,7 @@ export const AboutSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-lg transition-opacity duration-300 group-hover:opacity-0 -z-10" />
                     <Image
                       src={jcimage}
-                      alt="Juan Gurdian"
+                      alt="JC Gurdian"
                       className="w-48 h-64 rounded-lg object-cover"
                     />
                     <div className="absolute inset-0 rounded-lg ring-1 ring-white/10 transition-all duration-300 group-hover:ring-white/20" />
@@ -226,25 +146,25 @@ export const AboutSection = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-emerald-300 mt-0.5">&#9656;</span>
-                  <span>Claude Code Certified (Anthropic Partner)</span>
+                  <span>Claude Code certification (Anthropic), earned through yorCMO&apos;s Anthropic partnership</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-emerald-300 mt-0.5">&#9656;</span>
                   <span>AWS Certified Cloud Practitioner</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-emerald-300 mt-0.5">&#9656;</span>
-                  <span>Full Stack Web Development with MERN Stack and GenAI</span>
-                </li>
               </ul>
             </Card>
-            <Card className="h-[320px] md:col-span-3 lg:col-span-2">
+            <Card className="h-[320px] md:col-span-3 lg:col-span-2 p-6">
               <CardHeader title="My Toolbox" 
-                          description="Explore the technologies used to craft exceptional digital experiences."
+                          description=""
                           className="" />
-              <div className="overflow-hidden">
-                <ToolboxItems items={toolboxItemsFirstRow} className="mb-2" itemsWrapperClassName="animate-move-left [animation-duration:30s] [animation-delay:0s]" />
-                <ToolboxItems items={toolboxItemsSecondRow} className="-mt-7" itemsWrapperClassName="animate-move-right [animation-duration:30s] [animation-delay:15s]" />
+              <div className="space-y-4 mt-4">
+                {skillGroups.map((group) => (
+                  <div key={group.category} className="flex flex-wrap items-start gap-2">
+                    <span className="text-emerald-300 font-semibold text-sm min-w-[70px]">{group.category}:</span>
+                    <span className="text-white/60 text-sm">{group.skills}</span>
+                  </div>
+                ))}
               </div>
             </Card>
           </div>

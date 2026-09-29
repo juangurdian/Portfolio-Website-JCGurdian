@@ -8,47 +8,49 @@ const portfolioProjects = [
   {
     company: "yorCMO",
     year: "2025",
-    title: "Linky: Autonomous LinkedIn Outreach Platform",
+    title: "Autonomous LinkedIn Outreach Platform",
     results: [
-      { title: "Platform lead for autonomous LinkedIn outreach on LLM agents. Per client it sources about 6,000 companies and 12,000 prospects, researches each prospect, and drafts outreach in the user's voice." },
-      { title: "About 90% of drafts are approved without edits, with human approval before send. Directed one engineer on the project." },
-      { title: "Built on LangGraph, Unipile API, Supabase, and Modal with full observability and per-agent cost controls." },
+      { title: "Problem: fractional CMOs needed personalized LinkedIn outreach at a volume no one could write by hand." },
+      { title: "Built: LLM agents that source about 6,000 companies and 12,000 prospects per client, research each prospect, and draft messages in the user's voice, with human approval before anything sends. I led the build and directed one engineer." },
+      { title: "Result: about 90% of drafts approved without edits. Stack: LangGraph, Unipile, Supabase, Modal, per-agent cost tracking." },
     ],
     link: "",
     image: null,
+    tag: "Private client work",
   },
   {
     company: "yorCMO",
     year: "2025",
-    title: "CORE Growth Platform + MCP Server",
+    title: "Multi-tenant Marketing Agent Platform + MCP Server",
     results: [
-      { title: "Built 4 of 11 production LLM agents serving 24 client organizations across 25+ integrations (LinkedIn/Unipile, WordPress, HubSpot, Google Analytics and Ads, Mailchimp, Klaviyo, Apify, Notion, Shopify, Microsoft Graph)." },
-      { title: "Built and maintain an MCP server that exposes platform agents as tools inside Claude, plus the shared orchestration and tool-calling layer." },
-      { title: "Own guardrails (PII redaction, role-aware prompts), evals (prompt regression, A/B), RBAC and audit logs, and backend services on Modal, Vercel, Supabase, and AWS with Docker, GitHub Actions, observability." },
+      { title: "Built 4 of 11 production LLM agents serving 24 client organizations through 25+ integrations (HubSpot, WordPress, Google Analytics and Ads, Mailchimp, Klaviyo, Shopify, Notion, Microsoft Graph, and more)." },
+      { title: "Built and maintain the MCP server that exposes those agents as tools inside Claude, plus the shared orchestration and tool-calling layer." },
+      { title: "Guardrails, prompt-regression and A/B evals, RBAC with audit logs, and per-agent cost and latency controls." },
     ],
     link: "",
     image: null,
+    tag: "Private client work",
   },
   {
     company: "yorCMO",
     year: "2025",
     title: "PanelCast: Meeting-to-Content Pipeline",
     results: [
-      { title: "Turns a recorded meeting into an on-brand blog post, per-attendee LinkedIn posts, and short-form video clips." },
-      { title: "AI pipeline with transcription, speaker diarization, and automated content generation using Next.js, TypeScript, Python, FastAPI, and OpenAI." },
-      { title: "Live production tool used by yorCMO marketing teams, deployed on Vercel with full CI/CD pipeline." },
+      { title: "Turns one recorded meeting into an on-brand blog post with images, a LinkedIn post for each attendee, and short-form video clips." },
+      { title: "Builds a brand and voice profile for each person from their social posts and writing samples, so the output sounds like them." },
     ],
     link: "",
     image: null,
+    tag: "Private",
   },
   {
     company: "Gynka",
     year: "2025",
-    title: "Gynka: AI Fitness Coaching App",
+    title: "Gynka: AI Fitness Coach",
     results: [
-      { title: "Sole technical owner of an AI fitness coaching app in closed beta. Architected and built the multi-agent AI coach engine on AWS (FastAPI, Pydantic AI, Supabase, ARQ/Redis, RevenueCat)." },
-      { title: "Built the full iOS and Android app in React Native, distributed via TestFlight to advisors and early users." },
-      { title: "The coach ingests biomarker data from connected wearables and adapts each workout toward the user's goal. Own product decisions end to end." },
+      { title: "A performance coach for self-coached athletes: it reads wearable biomarkers and rewrites the day's session toward the user's goal." },
+      { title: "I'm the only engineer: multi-agent engine on AWS (FastAPI, Pydantic AI, Supabase, ARQ/Redis), React Native iOS and Android app, RevenueCat billing." },
+      { title: "Status: closed beta on TestFlight." },
     ],
     link: "https://gynka.app",
     image: null,
@@ -56,11 +58,10 @@ const portfolioProjects = [
   {
     company: "Open Source",
     year: "2025",
-    title: "Wingman: MCP Bridge for AI Coding Assistants",
+    title: "Wingman: MCP Bridge for Coding Agents",
     results: [
-      { title: "TypeScript MCP bridge that lets an assistant monitor and drive Claude Code / Codex sessions." },
-      { title: "Enables AI assistants to observe and interact with coding sessions programmatically." },
-      { title: "Open source project available on GitHub with full documentation." },
+      { title: "TypeScript MCP server that lets a remote AI assistant monitor and drive local Claude Code and Codex sessions." },
+      { title: "Bearer-token auth, tunnel setup docs, published to npm as wingman-mcp." },
     ],
     link: "https://github.com/juangurdian/wingman",
     image: null,
@@ -70,9 +71,8 @@ const portfolioProjects = [
     year: "2025",
     title: "Vault-AI: Local-First AI Platform",
     results: [
-      { title: "Local-first AI platform with an LLM smart router that picks among local models by task type in under 500ms." },
-      { title: "ChromaDB RAG, FastAPI + Next.js frontend, Ollama for local inference, SearXNG for search, ComfyUI integration." },
-      { title: "One-command Docker Compose deployment for fully self-hosted AI capabilities." },
+      { title: "Runs local models on your own hardware. An LLM router sorts each query into one of seven task types and picks a model in under 500 ms, with regex fallback, caching, and automatic upgrades when a prompt overflows the context window." },
+      { title: "Next.js and FastAPI, Ollama, ChromaDB RAG, SearXNG search, ComfyUI images. One-command Docker Compose deploy." },
     ],
     link: "https://github.com/juangurdian/Vault-AI",
     image: null,
@@ -80,11 +80,10 @@ const portfolioProjects = [
   {
     company: "Open Source",
     year: "2025",
-    title: "Bug Butler: Slack Bot for GitHub Issues",
+    title: "Bug Butler: Slack to GitHub Issues",
     results: [
-      { title: "Slack bot that turns bug reports into structured GitHub Issues automatically." },
-      { title: "Built with Python, FastAPI, and LiteLLM for intelligent parsing and formatting of bug reports." },
-      { title: "CI integration for automated issue creation and team workflow optimization." },
+      { title: "Slack bot that turns a plain-language bug report into a structured GitHub Issue. It asks follow-up questions when details are missing and shows a preview before filing." },
+      { title: "Python, FastAPI, Slack Bolt, LiteLLM (works with multiple model providers), Supabase, with CI." },
     ],
     link: "https://github.com/juangurdian/bug-butler",
     image: null,
@@ -98,7 +97,7 @@ export const ProjectsSection = () => {
         <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">Production Systems</p>
       </div>
       <h2 className="font-serif text-3xl md:text-5xl text-center mt-6">Featured Projects</h2>
-      <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">Real tools serving real clients and users.</p>
+      <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">Production systems I built and run, plus open-source work you can read.</p>
       <div className="mt-10 md:mt-20 flex flex-col gap-20">
         {portfolioProjects.map((project, projectIndex) => (
           <div key={project.title} className="bg-gray-800 rounded-3xl relative z-0
@@ -142,7 +141,7 @@ export const ProjectsSection = () => {
               </a>
             )}
             {!project.link && (
-              <div className="mt-8 mb-8 text-sm text-white/40 italic">Private project</div>
+              <div className="mt-8 mb-8 text-sm text-white/40 italic">{(project as any).tag || "Private project"}</div>
             )}
             </div>
           </div>
