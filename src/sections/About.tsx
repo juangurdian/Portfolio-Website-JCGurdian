@@ -137,9 +137,9 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-            <Card className="h-[320px] md:col-span-2 lg:col-span-1 p-6">
-              <CardHeader title="Education & Certs" description="Credentials and training"/>
-              <ul className="space-y-3 text-sm text-white/60 mt-4">
+            <Card className="md:col-span-2 lg:col-span-1 p-6 md:p-8">
+              <CardHeader title="Education & Certs" description="Credentials and training" className="p-0 md:p-0" />
+              <ul className="space-y-3 text-sm text-white/60 mt-6">
                 <li className="flex items-start gap-2">
                   <span className="text-emerald-300 mt-0.5">&#9656;</span>
                   <span>Texas Christian University, B.S. Computer Information Technology, May 2025</span>
@@ -154,15 +154,15 @@ export const AboutSection = () => {
                 </li>
               </ul>
             </Card>
-            <Card className="h-[320px] md:col-span-3 lg:col-span-2 p-6">
-              <CardHeader title="My Toolbox" 
-                          description=""
-                          className="" />
-              <div className="space-y-4 mt-4">
+            <Card className="md:col-span-3 lg:col-span-2 p-6 md:p-8">
+              <CardHeader title="My Toolbox"
+                          description="What I build production systems with"
+                          className="p-0 md:p-0" />
+              <div className="space-y-4 mt-6">
                 {skillGroups.map((group) => (
-                  <div key={group.category} className="flex flex-wrap items-start gap-2">
-                    <span className="text-emerald-300 font-semibold text-sm min-w-[70px]">{group.category}:</span>
-                    <span className="text-white/60 text-sm">{group.skills}</span>
+                  <div key={group.category} className="grid grid-cols-[5.5rem_1fr] items-start gap-3">
+                    <span className="text-emerald-300 font-semibold text-sm">{group.category}</span>
+                    <span className="text-white/60 text-sm leading-relaxed">{group.skills}</span>
                   </div>
                 ))}
               </div>
@@ -180,8 +180,12 @@ export const AboutSection = () => {
               ))}
             </div>
           </Card>
-          <Card className="h-[320px] p-0 relaitve md:col-span-2 lg:col-span-1">
-            <Image src={mapImage} alt="map" className="h-full w-full object-cover object-left-top" />
+          <Card className="h-[320px] p-0 md:col-span-2 lg:col-span-1">
+            <Image
+              src={mapImage}
+              alt="Map of the Tampa Bay area"
+              className="h-full w-full object-cover object-center scale-[1.8] invert hue-rotate-180 brightness-90 contrast-[.85] saturate-[.6]"
+            />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-gray-900/30">
             <div className=" absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-2 animate-ping [animation-duration:2s]"></div>
             <div className=" absolute inset-0 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 -z-10"></div>

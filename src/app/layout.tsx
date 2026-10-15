@@ -103,7 +103,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={twMerge(inter.variable, calistoga.variable, "overflow-x-hidden")}>
+    <html lang="en" className={twMerge(inter.variable, calistoga.variable, "overflow-x-clip")}>
       <head>
         <script
           type="application/ld+json"
@@ -111,9 +111,9 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="bg-gray-900 text-white antialiased font-sans overflow-x-hidden"
+        className="bg-gray-900 text-white antialiased font-sans overflow-x-clip"
       >
-        <div className="min-h-screen w-full overflow-x-hidden">
+        <div className="min-h-screen w-full overflow-x-clip">
           {children}
         </div>
       </body>
