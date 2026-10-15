@@ -42,6 +42,8 @@ type ProjectStackCardProps = {
   bottomClip: MotionValue<number>;
   stickyTop?: number;
   isFront: boolean;
+  /** Covered by the front card (as opposed to still coming up below it). */
+  isBuried: boolean;
   reducedMotion: boolean;
   onSelect: (index: number) => void;
 };
@@ -95,6 +97,7 @@ export const ProjectStackCard = ({
   bottomClip,
   stickyTop,
   isFront,
+  isBuried,
   reducedMotion,
   onSelect,
 }: ProjectStackCardProps) => {
@@ -102,7 +105,7 @@ export const ProjectStackCard = ({
   const clipBottom = useTransform(bottomClip, (px) => (px > 0.5 ? px : -GLOW_ROOM_PX));
   const clipPath = useMotionTemplate`inset(-${GLOW_ROOM_PX}px -${GLOW_ROOM_PX}px ${clipBottom}px -${GLOW_ROOM_PX}px)`;
   const spotlight = usePointerSpotlight(isFront && !reducedMotion);
-  const canFocus = !isFront;
+  const canFocus = isBuried;
 
   return (
     <motion.article
@@ -114,6 +117,8 @@ export const ProjectStackCard = ({
       whileHover={{ y: canFocus && !reducedMotion ? HOVER_LIFT_PX : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
       onClick={canFocus ? () => onSelect(index) : undefined}
+      // Tabbing into a card that isn't in front brings it forward, so focused links are never hidden.
+      onFocusCapture={isFront ? undefined : () => onSelect(index)}
     >
       <motion.div
         className="relative z-0 overflow-hidden rounded-3xl bg-gray-800 px-6 pb-6 shadow-[0_-16px_40px_-24px_rgba(0,0,0,0.9)] transition-shadow duration-300 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-3xl after:outline after:outline-2 after:-outline-offset-2 after:outline-white/20 after:transition-colors after:duration-300 group-hover:shadow-[0_0_60px_-15px_rgba(110,231,183,0.35)] group-hover:after:outline-emerald-300/40 md:px-10 md:pb-8"
@@ -137,11 +142,21 @@ export const ProjectStackCard = ({
             </span>
           </span>
           <span className="flex items-center gap-3 font-mono font-normal text-white/30">
-            {canFocus && (
-              <span className="hidden text-emerald-300/80 opacity-0 transition-opacity group-hover:opacity-100 md:inline">
-                Bring to front
-              </span>
-            )}
+            {/* Keyboard tab stop for every card; stays mounted once the card is in front so focus isn't lost. */}
+            <button
+              type="button"
+              aria-label={isFront ? `${project.shortName}, in front` : `Bring ${project.shortName} to the front`}
+              onClick={(event) => {
+                event.stopPropagation();
+                onSelect(index);
+              }}
+              className={twMerge(
+                "sr-only whitespace-nowrap rounded-md px-1 uppercase tracking-widest text-emerald-300/80 outline-none focus-visible:not-sr-only focus-visible:ring-2 focus-visible:ring-emerald-300/60",
+                canFocus && "opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 md:not-sr-only",
+              )}
+            >
+              {isFront ? "In front" : "Bring to front"}
+            </button>
             {formatIndex(index + 1)} / {formatIndex(total)}
           </span>
         </header>

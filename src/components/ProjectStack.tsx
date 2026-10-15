@@ -45,7 +45,8 @@ export const ProjectStack = ({ projects }: { projects: readonly FeaturedProject[
   const focusCard = useCallback(
     (index: number) => {
       if (!layout) return;
-      window.scrollTo({ top: scrollTargetFor(layout, index), behavior: reducedMotion ? "auto" : "smooth" });
+      // "instant", not "auto": globals.css sets scroll-behavior: smooth, which "auto" would inherit.
+      window.scrollTo({ top: scrollTargetFor(layout, index), behavior: reducedMotion ? "instant" : "smooth" });
     },
     [layout, reducedMotion],
   );
@@ -70,6 +71,7 @@ export const ProjectStack = ({ projects }: { projects: readonly FeaturedProject[
             bottomClip={clips[i]}
             stickyTop={layout?.stickyTops[i]}
             isFront={i === active}
+            isBuried={i < active}
             reducedMotion={reducedMotion}
             onSelect={focusCard}
           />
