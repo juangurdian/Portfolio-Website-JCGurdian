@@ -40,6 +40,8 @@ type ProjectStackCardProps = {
   scale: MotionValue<number>;
   /** Pixels to trim off the bottom so it never shows below a shorter card in front. */
   bottomClip: MotionValue<number>;
+  /** False on screens too short to stack: the card is then a plain list item. */
+  stacked: boolean;
   stickyTop?: number;
   isFront: boolean;
   /** Covered by the front card (as opposed to still coming up below it). */
@@ -95,6 +97,7 @@ export const ProjectStackCard = ({
   depth,
   scale,
   bottomClip,
+  stacked,
   stickyTop,
   isFront,
   isBuried,
@@ -110,8 +113,13 @@ export const ProjectStackCard = ({
   return (
     <motion.article
       {...{ [STACK_CARD_ATTRIBUTE]: "" }}
-      className={twMerge("group sticky", canFocus && "cursor-pointer")}
-      style={{ top: stickyTop ?? STACK_BASE_TOP + index * FALLBACK_STEP, scale, clipPath, transformOrigin: "50% 0%" }}
+      className={twMerge("group", stacked ? "sticky" : "relative", canFocus && "cursor-pointer")}
+      style={{
+        top: stacked ? stickyTop ?? STACK_BASE_TOP + index * FALLBACK_STEP : undefined,
+        scale,
+        clipPath,
+        transformOrigin: "50% 0%",
+      }}
       animate={{ y: 0 }}
       // Always defined: removing whileHover mid-hover leaves framer's hover state stuck on.
       whileHover={{ y: canFocus && !reducedMotion ? HOVER_LIFT_PX : 0 }}
@@ -121,7 +129,7 @@ export const ProjectStackCard = ({
       onFocusCapture={isFront ? undefined : () => onSelect(index)}
     >
       <motion.div
-        className="relative z-0 overflow-hidden rounded-3xl bg-gray-800 px-6 pb-6 shadow-[0_-16px_40px_-24px_rgba(0,0,0,0.9)] transition-shadow duration-300 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-3xl after:outline after:outline-2 after:-outline-offset-2 after:outline-white/20 after:transition-colors after:duration-300 group-hover:shadow-[0_0_60px_-15px_rgba(110,231,183,0.35)] group-hover:after:outline-emerald-300/40 md:px-10 md:pb-8"
+        className="relative z-0 overflow-hidden rounded-3xl bg-gray-800 px-5 pb-5 shadow-[0_-16px_40px_-24px_rgba(0,0,0,0.9)] transition-shadow duration-300 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-3xl after:outline after:outline-2 after:-outline-offset-2 after:outline-white/20 after:transition-colors after:duration-300 group-hover:shadow-[0_0_60px_-15px_rgba(110,231,183,0.35)] group-hover:after:outline-emerald-300/40 md:px-10 md:pb-8"
         style={{ rotateX: spotlight.rotateX, rotateY: spotlight.rotateY, transformPerspective: 1200 }}
         {...spotlight.handlers}
       >
@@ -132,41 +140,46 @@ export const ProjectStackCard = ({
           style={{ background: spotlight.background, opacity: spotlight.opacity }}
         />
 
-        <header className="flex h-12 items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest">
+        {/* Phone header height ties to MIN_STEP in stack-layout.ts: its text must end within a 26px strip. */}
+        <header className="flex h-10 items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest md:h-12">
+          {/* Everything stays on one line: the header doubles as the strip a buried card shows. */}
           <span className="flex min-w-0 items-center gap-3">
-            <span className="bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">
+            <span className="shrink-0 whitespace-nowrap bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">
               {project.shortName}
             </span>
             <span className="truncate font-normal text-white/40">
               {project.company} &bull; {project.year}
             </span>
           </span>
-          <span className="flex items-center gap-3 font-mono font-normal text-white/30">
-            {/* Keyboard tab stop for every card; stays mounted once the card is in front so focus isn't lost. */}
-            <button
-              type="button"
-              aria-label={isFront ? `${project.shortName}, in front` : `Bring ${project.shortName} to the front`}
-              onClick={(event) => {
-                event.stopPropagation();
-                onSelect(index);
-              }}
-              className={twMerge(
-                "sr-only whitespace-nowrap rounded-md px-1 uppercase tracking-widest text-emerald-300/80 outline-none focus-visible:not-sr-only focus-visible:ring-2 focus-visible:ring-emerald-300/60",
-                canFocus && "opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 md:not-sr-only",
-              )}
-            >
-              {isFront ? "In front" : "Bring to front"}
-            </button>
+          <span className="flex shrink-0 items-center gap-3 whitespace-nowrap font-mono font-normal text-white/30">
+            {/* Keyboard tab stop for every stacked card; stays mounted once the card is in front so focus isn't lost. */}
+            {stacked && (
+              <button
+                type="button"
+                aria-label={isFront ? `${project.shortName}, in front` : `Bring ${project.shortName} to the front`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onSelect(index);
+                }}
+                className={twMerge(
+                  "sr-only whitespace-nowrap rounded-md px-1 uppercase tracking-widest text-emerald-300/80 outline-none focus-visible:not-sr-only focus-visible:ring-2 focus-visible:ring-emerald-300/60",
+                  canFocus && "opacity-0 transition-opacity focus-visible:opacity-100 group-hover:opacity-100 md:not-sr-only",
+                )}
+              >
+                {isFront ? "In front" : "Bring to front"}
+              </button>
+            )}
             {formatIndex(index + 1)} / {formatIndex(total)}
           </span>
         </header>
 
-        <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl">{project.title}</h3>
-        <hr className="mt-4 border-t-2 border-white/5 md:mt-5" />
-        <ul className="mt-4 flex flex-col gap-3 md:mt-5">
+        {/* Phones get tighter type and spacing so the tallest card still fits on short screens. */}
+        <h3 className="font-serif text-xl md:text-3xl lg:text-4xl">{project.title}</h3>
+        <hr className="mt-3 border-t-2 border-white/5 md:mt-5" />
+        <ul className="mt-3 flex flex-col gap-2 md:mt-5 md:gap-3">
           {project.results.map((result) => (
-            <li key={result} className="flex gap-2 text-sm text-white/60 md:text-[15px]">
-              <CheckCircle className="size-5 flex-shrink-0 md:size-6" />
+            <li key={result} className="flex gap-2 text-[13px] leading-[1.45] text-white/60 md:text-[15px] md:leading-5">
+              <CheckCircle className="mt-px size-4 flex-shrink-0 md:mt-0 md:size-6" />
               <span>{result}</span>
             </li>
           ))}
@@ -177,13 +190,13 @@ export const ProjectStackCard = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={(event) => event.stopPropagation()}
-            className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 font-semibold text-gray-950 md:w-auto"
+            className="mt-5 inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 font-semibold text-gray-950 md:mt-6 md:h-11 md:w-auto"
           >
             <span>View Project</span>
             <ArrowUpRightIcon className="size-4" />
           </a>
         ) : (
-          <div className="mt-6 text-sm italic text-white/40">{project.tag ?? "Private project"}</div>
+          <div className="mt-5 text-sm italic text-white/40 md:mt-6">{project.tag ?? "Private project"}</div>
         )}
 
         {/* Dims buried cards; hover lifts the dim so the card brightens as it peeks up. */}
