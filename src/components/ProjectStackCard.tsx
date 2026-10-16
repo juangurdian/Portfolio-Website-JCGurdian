@@ -140,7 +140,8 @@ export const ProjectStackCard = ({
           style={{ background: spotlight.background, opacity: spotlight.opacity }}
         />
 
-        <header className="flex h-11 items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest md:h-12">
+        {/* Phone header height ties to MIN_STEP in stack-layout.ts: its text must end within a 26px strip. */}
+        <header className="flex h-10 items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest md:h-12">
           {/* Everything stays on one line: the header doubles as the strip a buried card shows. */}
           <span className="flex min-w-0 items-center gap-3">
             <span className="shrink-0 whitespace-nowrap bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent">

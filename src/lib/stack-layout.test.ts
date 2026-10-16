@@ -23,7 +23,7 @@ const layoutFor = (heights: number[], viewportHeight = VIEWPORT) =>
 describe("stackStep", () => {
   it("scales with the viewport and stays within bounds", () => {
     expect(stackStep(900)).toBe(36);
-    expect(stackStep(200)).toBe(24);
+    expect(stackStep(200)).toBe(26);
     expect(stackStep(3000)).toBe(40);
   });
 });
@@ -41,10 +41,15 @@ describe("computeStackLayout", () => {
   });
 
   it("tightens the step for every card so the tallest still fits below its strip", () => {
-    const layout = layoutFor([400, 300, 740]);
+    const layout = layoutFor([400, 300, 736]);
     expect(layout.stacked).toBe(true);
-    expect(layout.stickyTops).toEqual([STACK_BASE_TOP, STACK_BASE_TOP + 24, STACK_BASE_TOP + 48]);
-    expect(layout.stickyTops[2] + 740).toBeLessThanOrEqual(VIEWPORT - STACK_BOTTOM_MARGIN);
+    expect(layout.stickyTops).toEqual([STACK_BASE_TOP, STACK_BASE_TOP + 26, STACK_BASE_TOP + 52]);
+    expect(layout.stickyTops[2] + 736).toBeLessThanOrEqual(VIEWPORT - STACK_BOTTOM_MARGIN);
+  });
+
+  it("turns stacking off rather than use a strip too thin to show the header line", () => {
+    // Fits only with a 25px step.
+    expect(layoutFor([400, 300, 738]).stacked).toBe(false);
   });
 
   it("keeps pins in order with every card fully on screen", () => {

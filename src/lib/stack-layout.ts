@@ -16,8 +16,12 @@ export const STACK_BASE_TOP = 96;
 export const STACK_BOTTOM_MARGIN = 16;
 
 const STEP_RATIO = 0.04;
-/** Smallest strip that still shows a buried card's header; below this the stack turns off. */
-const MIN_STEP = 24;
+/**
+ * Smallest strip that still shows a buried card's whole header line; below this
+ * the stack turns off. Ties to ProjectStackCard: the 12px header text is centered
+ * in a 40px phone header, so it ends 26px below the card's top edge.
+ */
+const MIN_STEP = 26;
 const MAX_STEP = 40;
 /** In a plain list, the card whose top has scrolled past this fraction of the screen is in front. */
 const LIST_FRONT_LINE = 0.4;
