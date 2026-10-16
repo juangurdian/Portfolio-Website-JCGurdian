@@ -20,6 +20,8 @@ export const ProjectStack = ({ projects }: { projects: readonly FeaturedProject[
   const scales = useMemo(() => projects.map(() => motionValue(1)), [projects]);
   const clips = useMemo(() => projects.map(() => motionValue(0)), [projects]);
   const [active, setActive] = useState(0);
+  // Until measured, render as a stack; the server can't know the screen height.
+  const stacked = layout?.stacked ?? true;
 
   const sync = useCallback(
     (y: number) => {
@@ -69,13 +71,20 @@ export const ProjectStack = ({ projects }: { projects: readonly FeaturedProject[
             depth={depths[i]}
             scale={scales[i]}
             bottomClip={clips[i]}
+            stacked={stacked}
             stickyTop={layout?.stickyTops[i]}
-            isFront={i === active}
-            isBuried={i < active}
+            // In a plain list every card gets the front-card treatment and nothing is buried.
+            isFront={!stacked || i === active}
+            isBuried={stacked && i < active}
             reducedMotion={reducedMotion}
             onSelect={focusCard}
           />
         ))}
+        {/*
+          Room after the last card: lets it pin too and holds the finished deck on screen
+          briefly, instead of the container's end shoving taller cards up as it arrives.
+        */}
+        {stacked && <div aria-hidden className="h-[15vh]" />}
       </div>
     </div>
   );
