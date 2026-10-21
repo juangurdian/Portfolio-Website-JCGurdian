@@ -23,7 +23,7 @@ const layoutFor = (heights: number[], viewportHeight = VIEWPORT) =>
 describe("stackStep", () => {
   it("scales with the viewport and stays within bounds", () => {
     expect(stackStep(900)).toBe(36);
-    expect(stackStep(200)).toBe(20);
+    expect(stackStep(200)).toBe(26);
     expect(stackStep(3000)).toBe(40);
   });
 });
@@ -40,9 +40,34 @@ describe("computeStackLayout", () => {
     expect(layout.stickyTops).toEqual([STACK_BASE_TOP, STACK_BASE_TOP + step, STACK_BASE_TOP + 2 * step]);
   });
 
-  it("pins a card higher when it would not fit below its step", () => {
-    const layout = layoutFor([400, 850]);
-    expect(layout.stickyTops[1]).toBe(VIEWPORT - 850 - STACK_BOTTOM_MARGIN);
+  it("tightens the step for every card so the tallest still fits below its strip", () => {
+    const layout = layoutFor([400, 300, 736]);
+    expect(layout.stacked).toBe(true);
+    expect(layout.stickyTops).toEqual([STACK_BASE_TOP, STACK_BASE_TOP + 26, STACK_BASE_TOP + 52]);
+    expect(layout.stickyTops[2] + 736).toBeLessThanOrEqual(VIEWPORT - STACK_BOTTOM_MARGIN);
+  });
+
+  it("turns stacking off rather than use a strip too thin to show the header line", () => {
+    // Fits only with a 25px step.
+    expect(layoutFor([400, 300, 738]).stacked).toBe(false);
+  });
+
+  it("keeps pins in order with every card fully on screen", () => {
+    const layout = layoutFor([420, 520, 300, 610, 350]);
+    expect(layout.stacked).toBe(true);
+    layout.stickyTops.forEach((top, i) => {
+      if (i > 0) expect(top).toBeGreaterThan(layout.stickyTops[i - 1]);
+      expect(top + layout.heights[i]).toBeLessThanOrEqual(VIEWPORT - STACK_BOTTOM_MARGIN);
+    });
+  });
+
+  it("turns stacking off when the cards can't all fit with a readable strip", () => {
+    // Card heights measured on a 375x667 iPhone SE before the compact phone styles.
+    expect(layoutFor([550, 498, 386, 430, 370, 470, 410], 667).stacked).toBe(false);
+  });
+
+  it("turns stacking off when the first card alone is taller than the screen allows", () => {
+    expect(layoutFor([800], VIEWPORT).stacked).toBe(false);
   });
 
   it("returns new arrays instead of reusing the input", () => {
@@ -138,6 +163,21 @@ describe("cardTop", () => {
     expect(cardTop(layout, 2, y)).toBe(layout.naturalTops[2] - y);
   });
 
+  it("pins the last card too when the stack has room after it, and pushes nothing until that room scrolls past", () => {
+    const heights = [500, 300, 400];
+    const lastBottom = 2000 + 400;
+    const roomy = computeStackLayout({
+      containerTop: CONTAINER_TOP,
+      heights,
+      gap: GAP,
+      viewportHeight: VIEWPORT,
+      containerBottom: lastBottom + 300,
+    });
+    const arrived = scrollTargetFor(roomy, 2);
+    expect(cardTop(roomy, 2, arrived + 100)).toBe(roomy.stickyTops[2]);
+    expect(cardTop(roomy, 0, arrived + 100)).toBe(roomy.stickyTops[0]);
+  });
+
   it("pushes pinned cards up as the end of the stack scrolls past", () => {
     const y = scrollTargetFor(layout, 2) + 600;
     const stackBottom = layout.naturalTops[2] + layout.heights[2] - y;
@@ -180,6 +220,28 @@ describe("bottomClips", () => {
   it("leaves a buried card alone when the card in front is taller", () => {
     const tallerFront = layoutFor([300, 500, 400]);
     expect(bottomClips(tallerFront, scrollTargetFor(tallerFront, 1), unscaled)[0]).toBe(0);
+  });
+});
+
+describe("when stacking is off", () => {
+  const layout = layoutFor([800, 300, 400]);
+
+  it("is a plain list: cards follow the page and nothing is buried or trimmed", () => {
+    const y = 1500;
+    expect(layout.stacked).toBe(false);
+    expect([0, 1, 2].map((i) => cardTop(layout, i, y))).toEqual(layout.naturalTops.map((top) => top - y));
+    expect([0, 1, 2].map((i) => stackDepth(layout, i, y))).toEqual([0, 0, 0]);
+    expect(bottomClips(layout, y, [1, 1, 1], 24)).toEqual([0, 0, 0]);
+  });
+
+  it("puts in front the card that has scrolled past 40% of the screen", () => {
+    const line = VIEWPORT * 0.4;
+    expect(activeIndex(layout, layout.naturalTops[1] - line - 1)).toBe(0);
+    expect(activeIndex(layout, layout.naturalTops[1] - line)).toBe(1);
+  });
+
+  it("scrolls a card to just below the nav", () => {
+    expect(layout.naturalTops[2] - scrollTargetFor(layout, 2)).toBe(STACK_BASE_TOP);
   });
 });
 

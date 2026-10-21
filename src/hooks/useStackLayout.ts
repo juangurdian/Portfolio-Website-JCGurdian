@@ -27,10 +27,11 @@ export const useStackLayout = (containerRef: RefObject<HTMLElement>): StackLayou
 
     const measure = () => {
       const style = window.getComputedStyle(container);
+      const containerDocTop = container.getBoundingClientRect().top + window.scrollY;
       setLayout(
         computeStackLayout({
-          containerTop:
-            container.getBoundingClientRect().top + window.scrollY + (parseFloat(style.paddingTop) || 0),
+          containerTop: containerDocTop + (parseFloat(style.paddingTop) || 0),
+          containerBottom: containerDocTop + container.offsetHeight - (parseFloat(style.paddingBottom) || 0),
           heights: cards.map((card) => card.offsetHeight),
           gap: parseFloat(style.rowGap) || 0,
           viewportHeight: viewport.height,
